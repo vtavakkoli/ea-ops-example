@@ -1,5 +1,8 @@
 name: Metroville Digital Permit Service
-version: "1.0"
+version: "1.1"
+repository:
+  url: https://github.com/vtavakkoli/ea-ops-example
+  branch: main
 metamodel:
   builtin: archimate-3.2
 paths:
