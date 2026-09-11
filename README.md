@@ -6,19 +6,24 @@
 [![Model](https://img.shields.io/badge/model-ArchiMate%203.2-5c6ac4)](https://github.com/vtavakkoli/ea-ops)
 [![Governance](https://img.shields.io/badge/governance-as%20code-2ea44f)](rules/governance.yaml)
 
-## Interactive architecture portal
+## Live interactive architecture portal
 
-The generated portal is designed like a lightweight EA repository rather than a static documentation page. It includes:
+**https://vtavakkoli.github.io/ea-ops-example/**
 
-- a process repository with searchable process documentation and generated relationship diagrams;
-- an end-to-end process landscape derived from `Triggering` relationships;
-- role, application and information context for every process;
-- a data and information repository with ownership, classification and process usage;
-- application and technology portfolio views;
-- an interactive graph explorer with one-hop and two-hop architecture neighborhoods;
+The portal behaves like a lightweight EA repository rather than a static documentation page. It includes:
+
+- a searchable process repository with process documentation and interactive architecture diagrams;
+- an event-driven permit journey using ArchiMate `BusinessEvent` and `BusinessProcess` elements;
+- distinct visual cues for message, timer and signal events while preserving the semantic `BusinessEvent` type;
+- ArchiMate `Representation` elements for human-readable documents such as application PDFs, receipts and decision letters;
+- role, application, information and document context for every process;
+- data/information, application and technology portfolio views;
+- draggable diagram objects with browser-local draft persistence;
+- **Auto layout**, **Reset to Git**, **Copy layout YAML** and **Download YAML** controls;
+- committed `layout.positions` so curated diagrams remain stable across builds;
 - model-quality and governance results from the same validation rules used in CI.
 
-Run `eaops build . -o site` and open `site/index.html` to browse the complete interactive model.
+The browser is intentionally not the architecture source of truth. Architects can experiment by dragging elements; EA-Ops autosaves the draft locally and exports exact YAML coordinates. Those coordinates are then committed through the normal Git/pull-request workflow.
 
 ## Scenario
 
@@ -26,7 +31,42 @@ Run `eaops build . -o site` and open `site/index.html` to browse the complete in
 
 This repository is intentionally separate from the EA-Ops framework. It demonstrates how a normal organization can consume EA-Ops without embedding its architecture inside the framework repository.
 
-## What this example demonstrates
+## Event-driven permit journey
+
+```text
+✉ Permit Request Received
+          │
+          ▼
+Submit Permit Application
+          │
+          ▼
+⌁ Application Registered
+          │
+          ▼
+Assess Permit Case
+          │
+          ▼
+⌁ Assessment Completed
+          │
+          ▼
+◷ Payment Window Opened
+          │
+          ▼
+Collect Permit Fee
+          │
+          ▼
+✉ Payment Confirmation Received
+          │
+          ▼
+Issue Permit Decision
+          │
+          ▼
+✉ Decision Delivered
+```
+
+The process view also places responsible roles above the business flow, supporting applications beneath it, and information/documents on their own lane. The layout is stored in `views/process-landscape.yaml`.
+
+## Cross-layer architecture
 
 ```text
 Resident
@@ -72,7 +112,7 @@ Architecture review / approval
        ▼
       main
        │
-       ├── catalog
+       ├── interactive portal
        ├── architecture views
        └── reports
 ```
@@ -94,10 +134,12 @@ relationships/
 rules/
   governance.yaml
 views/
+  process-landscape.yaml
   citizen-service.yaml
   platform.yaml
   resilience.yaml
 docs/
+  index.html
   architecture-report.md
 .github/workflows/
   eaops.yml
@@ -115,6 +157,8 @@ eaops impact . --id app.case-management
 eaops report . -o architecture-report.md
 eaops build . -o site
 ```
+
+Open `site/index.html`, choose a process, drag some objects, then use **Copy layout YAML** or **Download YAML** to persist the refined coordinates in the corresponding view file.
 
 ## Architecture goals
 
