@@ -37,7 +37,6 @@ jobs:
         run: |
           eaops report . -o architecture-report.md
           eaops build . -o site
-          python tools/enhance_portal.py site/index.html
 
       - name: Publish report in workflow summary
         run: |
