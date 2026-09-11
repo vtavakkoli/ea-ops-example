@@ -1,5 +1,5 @@
 name: Metroville Digital Permit Service
-version: "1.1"
+version: "1.2"
 repository:
   url: https://github.com/vtavakkoli/ea-ops-example
   branch: main
