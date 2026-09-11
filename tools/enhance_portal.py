@@ -1,0 +1,43 @@
+from __future__ import annotations
+
+from pathlib import Path
+import sys
+
+
+NEW_DIAGRAM = r'''function savedLayout(ids){let best={},bestCount=0;Object.values(EA.views||{}).forEach(v=>{const p=v?.layout?.positions||v?.positions||{};const count=ids.reduce((n,id)=>n+(p[id]?1:0),0);if(count>bestCount){best=p;bestCount=count}});return best}
+function processDiagramContext(rootId){const proc=new Set([rootId]);let changed=true;while(changed){changed=false;rels.filter(r=>r.type==='Triggering').forEach(r=>{if(proc.has(r.source)&&obj(r.target)?.type==='BusinessProcess'&&!proc.has(r.target)){proc.add(r.target);changed=true}if(proc.has(r.target)&&obj(r.source)?.type==='BusinessProcess'&&!proc.has(r.source)){proc.add(r.source);changed=true}})}const ids=new Set(proc);for(const pid of proc){rels.forEach(r=>{if(r.target===pid&&['Assignment','Serving'].includes(r.type))ids.add(r.source);if(r.source===pid&&r.type==='Access')ids.add(r.target)})}return[...ids].map(obj).filter(Boolean)}
+function topologicalProcesses(nodes,rs){const ps=nodes.filter(n=>n.type==='BusinessProcess'),map=new Map(ps.map(p=>[p.id,p])),indeg=Object.fromEntries(ps.map(p=>[p.id,0]));rs.filter(r=>r.type==='Triggering'&&map.has(r.source)&&map.has(r.target)).forEach(r=>indeg[r.target]++);const q=ps.filter(p=>indeg[p.id]===0).sort((a,b)=>a.name.localeCompare(b.name)),out=[];while(q.length){const p=q.shift();if(out.some(x=>x.id===p.id))continue;out.push(p);rs.filter(r=>r.type==='Triggering'&&r.source===p.id).forEach(r=>{indeg[r.target]--;if(indeg[r.target]===0)q.push(map.get(r.target))})}ps.forEach(p=>{if(!out.some(x=>x.id===p.id))out.push(p)});return out}
+function distribute(items,y,W,positions,left=135,right=135){if(!items.length)return;const span=Math.max(1,W-left-right),step=items.length===1?0:span/(items.length-1);items.forEach((n,i)=>positions[n.id]=[items.length===1?W/2:left+i*step,y])}
+function autoProcessLayout(nodes,rs,rootId){const processes=topologicalProcesses(nodes,rs),roles=nodes.filter(n=>['BusinessActor','BusinessRole'].includes(n.type)),apps=nodes.filter(n=>['ApplicationComponent','ApplicationService'].includes(n.type)),data=nodes.filter(n=>['DataObject','BusinessObject'].includes(n.type)),others=nodes.filter(n=>![...processes,...roles,...apps,...data].includes(n));const widest=Math.max(processes.length,roles.length,apps.length,data.length,others.length,4),W=Math.max(1080,widest*210+180),H=others.length?680:570,positions={};distribute(roles,72,W,positions);distribute(processes,205,W,positions);distribute(apps,350,W,positions);distribute(data,495,W,positions);distribute(others,625,W,positions);return{positions,W,H,lanes:[['Roles / actors',72],['Business processes',205],['Applications / services',350],['Information',495]].concat(others.length?[['Other architecture',625]]:[])}}
+function genericLayeredLayout(nodes,rs,rootId,height){const dist={[rootId]:0},q=[rootId];while(q.length){const id=q.shift(),d=dist[id];rels.filter(r=>r.source===id||r.target===id).forEach(r=>{const nid=r.source===id?r.target:r.source;if(obj(nid)&&dist[nid]===undefined){dist[nid]=d+1;q.push(nid)}})}const groups={};nodes.forEach(n=>{const d=dist[n.id]??1;(groups[d]??=[]).push(n)});const ranks=Object.keys(groups).map(Number).sort((a,b)=>a-b),W=Math.max(960,ranks.length*260+180),H=Math.max(height,430,...Object.values(groups).map(g=>g.length*92+120)),positions={};ranks.forEach((rank,ri)=>{const items=groups[rank].sort((a,b)=>a.type.localeCompare(b.type)||a.name.localeCompare(b.name)),x=120+ri*((W-240)/Math.max(ranks.length-1,1)),step=H/(items.length+1);items.forEach((n,i)=>positions[n.id]=[x,step*(i+1)])});return{positions,W,H,lanes:[]}}
+function nodeBox(n,isRoot){const process=n.type==='BusinessProcess';return{w:process?190:(isRoot?185:160),h:process?62:(isRoot?58:52)}}
+function edgePath(a,b,sa,sb,type){const horizontal=Math.abs(b[0]-a[0])>=Math.abs(b[1]-a[1]);if(type==='Triggering'||horizontal){const x1=a[0]+(b[0]>=a[0]?sa.w/2:-sa.w/2),x2=b[0]+(b[0]>=a[0]?-sb.w/2:sb.w/2),mx=(x1+x2)/2;return{d:`M ${x1} ${a[1]} C ${mx} ${a[1]}, ${mx} ${b[1]}, ${x2} ${b[1]}`,lx:mx,ly:(a[1]+b[1])/2-7}}const y1=a[1]+(b[1]>=a[1]?sa.h/2:-sa.h/2),y2=b[1]+(b[1]>=a[1]?-sb.h/2:sb.h/2),my=(y1+y2)/2;return{d:`M ${a[0]} ${y1} C ${a[0]} ${my}, ${b[0]} ${my}, ${b[0]} ${y2}`,lx:(a[0]+b[0])/2+5,ly:my-5}}
+function nodeText(name,max=24){const words=String(name||'').split(/\s+/),lines=[''];for(const w of words){const i=lines.length-1;if((lines[i]+' '+w).trim().length<=max)lines[i]=(lines[i]+' '+w).trim();else if(lines.length<2)lines.push(w);else{lines[i]=(lines[i]+'…').slice(0,max);break}}return lines}
+function diagramHTML(rootId,depth=1,height=330,mode='auto'){const root=obj(rootId),processMode=mode==='process'||root?.type==='BusinessProcess';const nodes=processMode?processDiagramContext(rootId):neighbors(rootId,depth);if(!nodes.length)return'<div class="empty">No connected elements.</div>';const ids=nodes.map(n=>n.id),rs=relationsWithin(ids),layout=processMode?autoProcessLayout(nodes,rs,rootId):genericLayeredLayout(nodes,rs,rootId,height),positions=layout.positions,saved=savedLayout(ids);Object.entries(saved).forEach(([id,p])=>{if(!positions[id]||!p)return;const x=Number(p.x??p[0]),y=Number(p.y??p[1]);if(Number.isFinite(x)&&Number.isFinite(y))positions[id]=[x,y]});const W=Math.max(layout.W,...Object.values(positions).map(p=>p[0]+150)),H=Math.max(layout.H,...Object.values(positions).map(p=>p[1]+90));let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Architecture diagram"><defs><marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8394aa"/></marker></defs>`;if(processMode){layout.lanes.forEach(([label,y])=>{svg+=`<line x1="84" y1="${y}" x2="${W-40}" y2="${y}" stroke="#e9eef5" stroke-width="1"/><text x="18" y="${y+4}" font-size="10" font-weight="800" fill="#8b99aa" letter-spacing=".08em">${esc(label.toUpperCase())}</text>`})}rs.sort((a,b)=>(a.type==='Triggering'?-1:1)-(b.type==='Triggering'?-1:1)).forEach(r=>{const a=positions[r.source],b=positions[r.target],sn=obj(r.source),tn=obj(r.target);if(!a||!b||!sn||!tn)return;const sa=nodeBox(sn,r.source===rootId),sb=nodeBox(tn,r.target===rootId),path=edgePath(a,b,sa,sb,r.type),strong=r.type==='Triggering';svg+=`<path d="${path.d}" fill="none" stroke="${strong?'#506986':'#a4b2c3'}" stroke-width="${strong?2.2:1.35}" marker-end="url(#arr)"/>`;if(!processMode||strong)svg+=`<text x="${path.lx}" y="${path.ly}" text-anchor="middle" font-size="9" font-weight="${strong?700:500}" fill="#66788f" paint-order="stroke" stroke="#fbfdff" stroke-width="4">${esc(r.type)}</text>`});nodes.forEach(n=>{const[x,y]=positions[n.id],isRoot=n.id===rootId,box=nodeBox(n,isRoot),fill=elementColor(n),lines=nodeText(n.name,25),stroke=isRoot?'#1d4ed8':fill;svg+=`<g class="node" onclick="openAny('${esc(n.id)}')" style="cursor:pointer"><rect x="${x-box.w/2}" y="${y-box.h/2}" width="${box.w}" height="${box.h}" rx="10" fill="${isRoot?'#fff':fill}" fill-opacity="${isRoot?1:.16}" stroke="${stroke}" stroke-width="${isRoot?2.5:1.5}"/>`;lines.forEach((line,i)=>{svg+=`<text x="${x}" y="${y-(lines.length-1)*7+i*14-3}" text-anchor="middle" font-size="${isRoot?12:10.5}" font-weight="750" fill="#17243a">${esc(line)}</text>`});svg+=`<text x="${x}" y="${y+box.h/2-8}" text-anchor="middle" font-size="8.2" fill="#758397">${esc(n.type)}</text></g>`});if(Object.keys(saved).length)svg+=`<g><rect x="${W-168}" y="14" width="148" height="26" rx="13" fill="#eef4ff" stroke="#cbdaf8"/><text x="${W-94}" y="31" text-anchor="middle" font-size="9.5" font-weight="700" fill="#315caa">saved view positions</text></g>`;return svg+'</svg>'}
+'''
+
+
+def patch(path: Path) -> None:
+    text = path.read_text(encoding="utf-8")
+    start = text.index("function diagramHTML(")
+    end = text.index("function relationshipRows", start)
+    text = text[:start] + NEW_DIAGRAM + text[end:]
+    text = text.replace(
+        ".diagram svg{width:100%;height:330px}",
+        ".diagram svg{width:100%;height:auto;min-height:430px}.diagram{min-height:460px}",
+    )
+    text = text.replace(
+        "diagramHTML(p.id,1,350)",
+        "diagramHTML(p.id,2,540,'process')",
+    )
+    text = text.replace(
+        "Generated from roles, application services, data access and process relationships.",
+        "Layered process view generated from Triggering, roles, applications and data. Saved view positions are used when defined.",
+    )
+    path.write_text(text, encoding="utf-8")
+
+
+if __name__ == "__main__":
+    target = Path(sys.argv[1] if len(sys.argv) > 1 else "site/index.html")
+    patch(target)
+    print(f"Enhanced EA-Ops portal layout: {target}")
