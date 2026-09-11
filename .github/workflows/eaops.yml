@@ -1,0 +1,52 @@
+name: EA-Ops Reference Architecture
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-gate:
+    name: Validate architecture
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: EA-Ops architecture gate
+        uses: vtavakkoli/ea-ops@main
+        with:
+          root: .
+
+      - name: Install EA-Ops CLI for reports
+        run: python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@main"
+
+      - name: Architecture summary
+        run: |
+          echo "## EA-Ops Architecture Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          eaops summary . >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Generate architecture report and portal
+        run: |
+          eaops report . -o architecture-report.md
+          eaops build . -o site
+
+      - name: Publish report in workflow summary
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          cat architecture-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload generated architecture artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ea-ops-reference-architecture
+          path: |
+            architecture-report.md
+            site/
