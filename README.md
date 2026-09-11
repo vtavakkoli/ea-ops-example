@@ -6,6 +6,20 @@
 [![Model](https://img.shields.io/badge/model-ArchiMate%203.2-5c6ac4)](https://github.com/vtavakkoli/ea-ops)
 [![Governance](https://img.shields.io/badge/governance-as%20code-2ea44f)](rules/governance.yaml)
 
+## Interactive architecture portal
+
+The generated portal is designed like a lightweight EA repository rather than a static documentation page. It includes:
+
+- a process repository with searchable process documentation and generated relationship diagrams;
+- an end-to-end process landscape derived from `Triggering` relationships;
+- role, application and information context for every process;
+- a data and information repository with ownership, classification and process usage;
+- application and technology portfolio views;
+- an interactive graph explorer with one-hop and two-hop architecture neighborhoods;
+- model-quality and governance results from the same validation rules used in CI.
+
+Run `eaops build . -o site` and open `site/index.html` to browse the complete interactive model.
+
 ## Scenario
 
 **Metroville** is a fictional city replacing fragmented permit channels with one secure digital service. Residents submit applications online, authenticate through a digital identity service, upload evidence, pay fees, receive notifications, and track decisions. Case workers process applications in a governed case-management platform while the architecture team manages change through pull requests.
