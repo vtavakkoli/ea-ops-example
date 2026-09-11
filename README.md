@@ -13,13 +13,18 @@
 The portal behaves like a lightweight EA repository rather than a static documentation page. It includes:
 
 - a searchable process repository with process documentation and interactive architecture diagrams;
+- semantic ArchiMate-style shapes for Strategy, Business, Application, Technology/Physical, Motivation, and Implementation & Migration elements;
+- a dedicated **Notation** page that previews the supported element and relationship vocabulary;
 - an event-driven permit journey using ArchiMate `BusinessEvent` and `BusinessProcess` elements;
 - distinct visual cues for message, timer and signal events while preserving the semantic `BusinessEvent` type;
 - ArchiMate `Representation` elements for human-readable documents such as application PDFs, receipts and decision letters;
+- relationship notation for Composition, Aggregation, Assignment, Realization, Serving, Access, Influence, Triggering, Flow, Specialization and Association;
+- Access relationship modes (`read`, `write`, `read-write`) and Influence strength metadata;
 - role, application, information and document context for every process;
-- data/information, application and technology portfolio views;
-- draggable diagram objects with browser-local draft persistence;
-- **Auto layout**, **Reset to Git**, **Copy layout YAML** and **Download YAML** controls;
+- information, application, technology, strategy, motivation and implementation repository views;
+- an architecture explorer for cross-layer navigation;
+- draggable diagram objects with immediate relationship rerouting and browser-local draft persistence;
+- **Auto layout**, **Reset to Git**, **Zoom**, **Snap grid**, **Copy layout YAML**, **Download YAML**, and **Edit view in GitHub** controls;
 - committed `layout.positions` so curated diagrams remain stable across builds;
 - model-quality and governance results from the same validation rules used in CI.
 
@@ -65,6 +70,26 @@ Issue Permit Decision
 ```
 
 The process view also places responsible roles above the business flow, supporting applications beneath it, and information/documents on their own lane. The layout is stored in `views/process-landscape.yaml`.
+
+## Relationship semantics in the example
+
+The example deliberately exercises more than simple arrows. `Access` relationships carry presentation metadata showing whether behavior reads, writes or reads/writes passive structure, while `Influence` relationships demonstrate strength labels.
+
+```yaml
+- id: rel-assess-case-data
+  type: Access
+  source: process.assess-case
+  target: data.permit-case
+  properties: {accessType: read-write}
+
+- id: rel-compliance-audit
+  type: Influence
+  source: driver.compliance
+  target: requirement.auditability
+  properties: {strength: "++"}
+```
+
+The visual notation is generated from these semantics; it is not stored as a separate drawing.
 
 ## Cross-layer architecture
 
@@ -158,7 +183,7 @@ eaops report . -o architecture-report.md
 eaops build . -o site
 ```
 
-Open `site/index.html`, choose a process, drag some objects, then use **Copy layout YAML** or **Download YAML** to persist the refined coordinates in the corresponding view file.
+Open `site/index.html`, choose a process, drag some objects, then use **Copy layout YAML** or **Edit view in GitHub** to persist the refined coordinates in the corresponding view file.
 
 ## Architecture goals
 
