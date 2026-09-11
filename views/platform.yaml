@@ -1,0 +1,6 @@
+id: view.platform
+name: Digital Permit Platform
+root: app.case-management
+include:
+  depth: 3
+  types: [BusinessProcess, ApplicationComponent, ApplicationService, DataObject, Node, SystemSoftware, TechnologyService]

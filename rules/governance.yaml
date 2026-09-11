@@ -1,0 +1,42 @@
+rules:
+  - id: METRO-PROC-001
+    target: {type: BusinessProcess}
+    require: {properties: [owner, lifecycle, criticality]}
+    severity: error
+    message: Every business process must define owner, lifecycle and criticality.
+  - id: METRO-APP-001
+    target: {type: ApplicationComponent}
+    require: {properties: [owner, lifecycle, tier]}
+    severity: error
+    message: Every application component must define owner, lifecycle and service tier.
+  - id: METRO-CRIT-001
+    target: {type: BusinessProcess}
+    when: {properties: {criticality: critical}}
+    require: {relationship: {type: Serving, direction: incoming, min: 1}}
+    severity: error
+    message: Every critical business process must have at least one incoming Serving relationship.
+  - id: METRO-DATA-001
+    target: {type: DataObject}
+    require: {properties: [owner, classification]}
+    severity: error
+    message: Every data object must have a data owner and information classification.
+  - id: METRO-TECH-001
+    target: {type: TechnologyService}
+    require: {properties: [owner, lifecycle]}
+    severity: error
+    message: Every technology service must have ownership and lifecycle metadata.
+  - id: METRO-SVC-001
+    target: {type: BusinessService}
+    require: {properties: [owner, lifecycle]}
+    severity: error
+    message: Every business service must have an accountable owner and lifecycle state.
+  - id: METRO-REQ-001
+    target: {type: Requirement}
+    require: {properties: [owner, priority]}
+    severity: error
+    message: Architecture requirements must define owner and priority.
+  - id: METRO-WORK-001
+    target: {type: WorkPackage}
+    require: {properties: [owner, lifecycle]}
+    severity: error
+    message: Transformation work packages must define owner and lifecycle.

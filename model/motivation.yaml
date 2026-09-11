@@ -1,0 +1,50 @@
+- id: stakeholder.residents
+  type: Stakeholder
+  name: Residents
+  description: People who expect accessible, transparent and reliable permit services.
+  properties: {owner: Public Service Design, lifecycle: active}
+- id: stakeholder.service-department
+  type: Stakeholder
+  name: Service Department Leadership
+  description: Leadership accountable for statutory outcomes, service performance and compliance.
+  properties: {owner: Service Directorate, lifecycle: active}
+- id: driver.digital-first
+  type: Driver
+  name: Digital-first Service Delivery
+  description: Demand to complete public-service journeys digitally without unnecessary office visits.
+  properties: {owner: Digital Strategy Office, lifecycle: strategic}
+- id: driver.compliance
+  type: Driver
+  name: Regulatory Accountability
+  description: Need for traceable decisions, controlled access, retention and auditable service changes.
+  properties: {owner: Legal & Compliance, lifecycle: strategic}
+- id: goal.digital-completion
+  type: Goal
+  name: 80% Digital Completion
+  description: At least 80 percent of eligible permit requests should complete through the digital channel.
+  properties: {owner: Digital Services, lifecycle: target-2027}
+- id: goal.fast-decision
+  type: Goal
+  name: Faster Permit Decisions
+  description: Reduce avoidable waiting time through workflow automation and better information quality.
+  properties: {owner: Service Operations, lifecycle: target-2027}
+- id: requirement.auditability
+  type: Requirement
+  name: End-to-end Auditability
+  description: Security-sensitive actions and architecture changes must produce durable audit evidence.
+  properties: {owner: Security Governance, lifecycle: mandatory, priority: must}
+- id: requirement.availability
+  type: Requirement
+  name: High Service Availability
+  description: Critical digital permit capabilities must tolerate a single infrastructure failure.
+  properties: {owner: Service Reliability, lifecycle: mandatory, priority: must}
+- id: constraint.data-residency
+  type: Constraint
+  name: Controlled Data Residency
+  description: Confidential resident and permit data must remain within approved hosting boundaries.
+  properties: {owner: Data Protection Office, lifecycle: mandatory}
+- id: assessment.legacy-risk
+  type: Assessment
+  name: Legacy Integration Risk
+  description: Existing back-office dependencies can introduce coupling and slow modernization delivery.
+  properties: {owner: Enterprise Architecture, lifecycle: active, rating: medium}

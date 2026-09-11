@@ -1,0 +1,70 @@
+- id: app.citizen-portal
+  type: ApplicationComponent
+  name: Citizen Service Portal
+  description: Responsive digital channel for permit submission, status tracking and decision delivery.
+  properties: {owner: Digital Platforms, lifecycle: strategic, tier: tier-1}
+- id: app.case-management
+  type: ApplicationComponent
+  name: Permit Case Management
+  description: System of record for permit workflow, tasks, assessment and administrative decisions.
+  properties: {owner: Business Applications, lifecycle: strategic, tier: tier-1}
+- id: app.identity-access
+  type: ApplicationComponent
+  name: Digital Identity & Access
+  description: Authentication, session and authorization platform for resident and staff access.
+  properties: {owner: Identity & Security, lifecycle: strategic, tier: tier-1}
+- id: app.api-gateway
+  type: ApplicationComponent
+  name: API Gateway
+  description: Managed ingress, routing, policy enforcement and API observability layer.
+  properties: {owner: Integration Platform, lifecycle: strategic, tier: tier-1}
+- id: app.document-management
+  type: ApplicationComponent
+  name: Document Management
+  description: Stores submitted evidence, generated decisions and retention metadata.
+  properties: {owner: Enterprise Content, lifecycle: strategic, tier: tier-1}
+- id: app.payment
+  type: ApplicationComponent
+  name: Payment Platform
+  description: Executes permit fee payments and returns settlement status to case management.
+  properties: {owner: Finance Technology, lifecycle: strategic, tier: tier-1}
+- id: app.notification
+  type: ApplicationComponent
+  name: Notification Service
+  description: Sends transactional email and mobile notifications for permit events.
+  properties: {owner: Digital Platforms, lifecycle: strategic, tier: tier-2}
+- id: app.itsm
+  type: ApplicationComponent
+  name: IT Service Management
+  description: Incident and change system supporting operational governance of the permit service.
+  properties: {owner: IT Operations, lifecycle: strategic, tier: tier-1}
+- id: app.observability
+  type: ApplicationComponent
+  name: Observability Platform
+  description: Central metrics, logs, traces and service-health dashboards for runtime components.
+  properties: {owner: Platform Engineering, lifecycle: strategic, tier: tier-1}
+- id: service.permit-api
+  type: ApplicationService
+  name: Permit API Service
+  description: Governed application service exposing permit submission, case and status operations.
+  properties: {owner: Integration Platform, lifecycle: strategic}
+- id: service.identity
+  type: ApplicationService
+  name: Resident Identity Service
+  description: Authentication and identity assertion service consumed by the citizen channel.
+  properties: {owner: Identity & Security, lifecycle: strategic}
+- id: data.citizen-profile
+  type: DataObject
+  name: Citizen Profile
+  description: Minimum resident identity and contact data required for digital public service delivery.
+  properties: {owner: Data Governance, lifecycle: active, classification: confidential}
+- id: data.permit-case
+  type: DataObject
+  name: Permit Case Record
+  description: Canonical structured data set for application state, assessment and decision history.
+  properties: {owner: Service Data Owner, lifecycle: active, classification: confidential}
+- id: data.audit-event
+  type: DataObject
+  name: Architecture & Service Audit Event
+  description: Immutable evidence of security-sensitive and governance-relevant service activities.
+  properties: {owner: Security Governance, lifecycle: active, classification: restricted}

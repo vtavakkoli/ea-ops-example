@@ -1,0 +1,9 @@
+name: Metroville Digital Permit Service
+version: "1.0"
+metamodel:
+  builtin: archimate-3.2
+paths:
+  model: model
+  relationships: relationships
+  views: views
+  rules: rules

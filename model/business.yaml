@@ -1,0 +1,100 @@
+- id: capability.digital-public-service
+  type: Capability
+  name: Digital Public Service Delivery
+  description: Ability to deliver accessible end-to-end public services through secure digital channels.
+  properties: {owner: Digital Strategy Office, lifecycle: strategic}
+- id: capability.case-management
+  type: Capability
+  name: Case Management
+  description: Ability to register, assess, decide and track regulated service cases consistently.
+  properties: {owner: Service Operations, lifecycle: strategic}
+- id: capability.secure-digital-identity
+  type: Capability
+  name: Secure Digital Identity
+  description: Ability to authenticate residents and protect service access with trusted identity controls.
+  properties: {owner: Identity & Security, lifecycle: strategic}
+- id: capability.operational-resilience
+  type: Capability
+  name: Operational Resilience
+  description: Ability to detect, respond to and recover from failures affecting digital public services.
+  properties: {owner: IT Operations, lifecycle: strategic}
+- id: value.permit-to-decision
+  type: ValueStream
+  name: Permit to Decision
+  description: Resident value stream from submitting a permit request through receiving the final decision.
+  properties: {owner: Public Service Design, lifecycle: strategic}
+- id: actor.resident
+  type: BusinessActor
+  name: Resident
+  description: Person requesting a municipal permit through digital or assisted channels.
+  properties: {owner: Public Service Design, lifecycle: active}
+- id: actor.service-department
+  type: BusinessActor
+  name: Municipal Service Department
+  description: Organizational actor accountable for permit assessment and decision-making.
+  properties: {owner: Service Directorate, lifecycle: active}
+- id: role.applicant
+  type: BusinessRole
+  name: Permit Applicant
+  description: Role performed by a resident when submitting and tracking a permit request.
+  properties: {owner: Public Service Design, lifecycle: active}
+- id: role.case-worker
+  type: BusinessRole
+  name: Permit Case Worker
+  description: Reviews permit evidence, requests clarification and prepares a decision.
+  properties: {owner: Service Operations, lifecycle: active}
+- id: role.service-owner
+  type: BusinessRole
+  name: Digital Service Owner
+  description: Accountable for the service lifecycle, performance and architecture change priorities.
+  properties: {owner: Digital Services, lifecycle: active}
+- id: process.submit-permit
+  type: BusinessProcess
+  name: Submit Permit Application
+  description: Authenticate the applicant, capture application data and register supporting evidence.
+  properties: {owner: Digital Services, lifecycle: active, criticality: critical}
+- id: process.assess-case
+  type: BusinessProcess
+  name: Assess Permit Case
+  description: Validate completeness, inspect evidence and prepare the administrative assessment.
+  properties: {owner: Service Operations, lifecycle: active, criticality: critical}
+- id: process.collect-payment
+  type: BusinessProcess
+  name: Collect Permit Fee
+  description: Calculate, request and confirm payment associated with the permit case.
+  properties: {owner: Finance Services, lifecycle: active, criticality: high}
+- id: process.issue-decision
+  type: BusinessProcess
+  name: Issue Permit Decision
+  description: Record the approved or rejected decision and communicate it to the applicant.
+  properties: {owner: Service Operations, lifecycle: active, criticality: critical}
+- id: process.manage-incident
+  type: BusinessProcess
+  name: Manage Digital Service Incident
+  description: Detect, triage and restore the permit service after an operational incident.
+  properties: {owner: IT Operations, lifecycle: active, criticality: critical}
+- id: process.manage-change
+  type: BusinessProcess
+  name: Govern Service Change
+  description: Assess architecture impact, approve change and coordinate controlled service evolution.
+  properties: {owner: Enterprise Architecture, lifecycle: active, criticality: high}
+- id: service.digital-permit
+  type: BusinessService
+  name: Digital Permit Service
+  description: Public-facing service for submitting, tracking and receiving decisions for permit requests.
+  properties: {owner: Digital Services, lifecycle: strategic}
+- id: object.permit-application
+  type: BusinessObject
+  name: Permit Application
+  description: Business representation of the resident request, declarations and submitted evidence.
+  properties: {owner: Service Operations, lifecycle: active, classification: confidential}
+- id: object.permit-decision
+  type: BusinessObject
+  name: Permit Decision
+  description: Formal administrative result of the permit assessment.
+  properties: {owner: Service Operations, lifecycle: active, classification: confidential}
+- id: object.payment-receipt
+  type: BusinessObject
+  name: Payment Receipt
+  description: Evidence that the required permit fee has been successfully settled.
+  properties: {owner: Finance Services, lifecycle: active, classification: internal}
