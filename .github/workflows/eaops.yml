@@ -8,10 +8,16 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ea-ops-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   architecture-gate:
-    name: Validate architecture
+    name: Validate and build architecture
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +39,7 @@ jobs:
           eaops summary . >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Generate architecture report and portal
+      - name: Generate architecture report and interactive portal
         run: |
           eaops report . -o architecture-report.md
           eaops build . -o site
@@ -51,7 +57,13 @@ jobs:
             architecture-report.md
             site/
 
-      - name: Refresh published portal
+      - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Refresh repository snapshot
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
         run: |
           mkdir -p docs
@@ -61,8 +73,21 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/index.html docs/architecture-report.md
           if git diff --cached --quiet; then
-            echo "Published portal is already current."
+            echo "Published portal snapshot is already current."
           else
             git commit -m "docs: refresh generated EA portal"
             git push
           fi
+
+  deploy-pages:
+    name: Deploy EA-Ops Portal
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: architecture-gate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
