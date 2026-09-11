@@ -3,8 +3,8 @@
 ## Executive Summary
 
 - Quality score: **100/100**
-- Architecture objects: **56**
-- Relationships: **73**
+- Architecture objects: **65**
+- Relationships: **85**
 - Business processes: **6**
 - Data / business objects: **6**
 - Applications: **9**
@@ -17,11 +17,11 @@
 | Process | Owner | Criticality | Lifecycle | Supporting applications | Data used |
 |---|---|---|---|---:|---:|
 | Assess Permit Case | Service Operations | critical | active | 1 | 2 |
-| Collect Permit Fee | Finance Services | high | active | 1 | 1 |
+| Collect Permit Fee | Finance Services | high | active | 1 | 2 |
 | Govern Service Change | Enterprise Architecture | high | active | 1 | 0 |
-| Issue Permit Decision | Service Operations | critical | active | 2 | 1 |
+| Issue Permit Decision | Service Operations | critical | active | 2 | 2 |
 | Manage Digital Service Incident | IT Operations | critical | active | 2 | 1 |
-| Submit Permit Application | Digital Services | critical | active | 2 | 2 |
+| Submit Permit Application | Digital Services | critical | active | 2 | 3 |
 
 ## Data & Information Repository
 
@@ -56,6 +56,7 @@
 | ApplicationService | 2 |
 | Assessment | 1 |
 | BusinessActor | 2 |
+| BusinessEvent | 6 |
 | BusinessObject | 3 |
 | BusinessProcess | 6 |
 | BusinessRole | 3 |
@@ -69,6 +70,7 @@
 | Goal | 2 |
 | Node | 2 |
 | Plateau | 1 |
+| Representation | 3 |
 | Requirement | 2 |
 | Stakeholder | 2 |
 | SystemSoftware | 1 |
