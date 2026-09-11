@@ -18,16 +18,16 @@
 - {id: rel-payment-confirms, type: Triggering, source: process.collect-payment, target: event.payment-confirmed}
 - {id: rel-confirmation-starts-decision, type: Triggering, source: event.payment-confirmed, target: process.issue-decision}
 - {id: rel-decision-delivered, type: Triggering, source: process.issue-decision, target: event.decision-delivered}
-- {id: rel-submit-application, type: Access, source: process.submit-permit, target: object.permit-application}
-- {id: rel-submit-application-pdf, type: Access, source: process.submit-permit, target: representation.application-pdf}
-- {id: rel-assess-application, type: Access, source: process.assess-case, target: object.permit-application}
-- {id: rel-assess-case-data, type: Access, source: process.assess-case, target: data.permit-case}
-- {id: rel-decision-object, type: Access, source: process.issue-decision, target: object.permit-decision}
-- {id: rel-decision-letter-access, type: Access, source: process.issue-decision, target: representation.decision-letter}
-- {id: rel-payment-receipt, type: Access, source: process.collect-payment, target: object.payment-receipt}
-- {id: rel-payment-receipt-pdf, type: Access, source: process.collect-payment, target: representation.receipt-pdf}
-- {id: rel-submit-citizen, type: Access, source: process.submit-permit, target: data.citizen-profile}
-- {id: rel-incident-audit, type: Access, source: process.manage-incident, target: data.audit-event}
+- {id: rel-submit-application, type: Access, source: process.submit-permit, target: object.permit-application, properties: {accessType: write}}
+- {id: rel-submit-application-pdf, type: Access, source: process.submit-permit, target: representation.application-pdf, properties: {accessType: write}}
+- {id: rel-assess-application, type: Access, source: process.assess-case, target: object.permit-application, properties: {accessType: read}}
+- {id: rel-assess-case-data, type: Access, source: process.assess-case, target: data.permit-case, properties: {accessType: read-write}}
+- {id: rel-decision-object, type: Access, source: process.issue-decision, target: object.permit-decision, properties: {accessType: write}}
+- {id: rel-decision-letter-access, type: Access, source: process.issue-decision, target: representation.decision-letter, properties: {accessType: write}}
+- {id: rel-payment-receipt, type: Access, source: process.collect-payment, target: object.payment-receipt, properties: {accessType: write}}
+- {id: rel-payment-receipt-pdf, type: Access, source: process.collect-payment, target: representation.receipt-pdf, properties: {accessType: write}}
+- {id: rel-submit-citizen, type: Access, source: process.submit-permit, target: data.citizen-profile, properties: {accessType: read}}
+- {id: rel-incident-audit, type: Access, source: process.manage-incident, target: data.audit-event, properties: {accessType: read}}
 - {id: rel-application-pdf-realizes, type: Realization, source: representation.application-pdf, target: object.permit-application}
 - {id: rel-receipt-pdf-realizes, type: Realization, source: representation.receipt-pdf, target: object.payment-receipt}
 - {id: rel-decision-letter-realizes, type: Realization, source: representation.decision-letter, target: object.permit-decision}
@@ -67,13 +67,13 @@
 - {id: rel-postgresql-database, type: Assignment, source: tech.postgresql, target: tech.database-service}
 - {id: rel-openshift-kafka, type: Composition, source: tech.openshift, target: tech.kafka}
 - {id: rel-kafka-messaging, type: Association, source: tech.kafka, target: tech.messaging-service}
-- {id: rel-residents-digital, type: Influence, source: stakeholder.residents, target: driver.digital-first}
-- {id: rel-leadership-compliance, type: Influence, source: stakeholder.service-department, target: driver.compliance}
-- {id: rel-digital-completion, type: Influence, source: driver.digital-first, target: goal.digital-completion}
-- {id: rel-digital-speed, type: Influence, source: driver.digital-first, target: goal.fast-decision}
-- {id: rel-compliance-audit, type: Influence, source: driver.compliance, target: requirement.auditability}
-- {id: rel-completion-availability, type: Influence, source: goal.digital-completion, target: requirement.availability}
-- {id: rel-risk-audit, type: Influence, source: assessment.legacy-risk, target: requirement.auditability}
+- {id: rel-residents-digital, type: Influence, source: stakeholder.residents, target: driver.digital-first, properties: {strength: "+"}}
+- {id: rel-leadership-compliance, type: Influence, source: stakeholder.service-department, target: driver.compliance, properties: {strength: "+"}}
+- {id: rel-digital-completion, type: Influence, source: driver.digital-first, target: goal.digital-completion, properties: {strength: "++"}}
+- {id: rel-digital-speed, type: Influence, source: driver.digital-first, target: goal.fast-decision, properties: {strength: "+"}}
+- {id: rel-compliance-audit, type: Influence, source: driver.compliance, target: requirement.auditability, properties: {strength: "++"}}
+- {id: rel-completion-availability, type: Influence, source: goal.digital-completion, target: requirement.availability, properties: {strength: "+"}}
+- {id: rel-risk-audit, type: Influence, source: assessment.legacy-risk, target: requirement.auditability, properties: {strength: "+++"}}
 - {id: rel-audit-events, type: Association, source: requirement.auditability, target: data.audit-event}
 - {id: rel-residency-citizen, type: Association, source: constraint.data-residency, target: data.citizen-profile}
 - {id: rel-availability-runtime, type: Association, source: requirement.availability, target: tech.container-platform}
