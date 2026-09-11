@@ -1,0 +1,25 @@
+id: view.permit-process-landscape
+name: Permit Process Landscape
+root: process.submit-permit
+include:
+  depth: 3
+  types: [BusinessActor, BusinessRole, BusinessProcess, ApplicationComponent, ApplicationService, BusinessObject, DataObject]
+layout:
+  direction: LR
+  positions:
+    role.applicant: {x: 230, y: 72}
+    role.case-worker: {x: 500, y: 72}
+    process.submit-permit: {x: 230, y: 205}
+    process.assess-case: {x: 500, y: 205}
+    process.collect-payment: {x: 770, y: 205}
+    process.issue-decision: {x: 1040, y: 205}
+    app.citizen-portal: {x: 230, y: 350}
+    service.identity: {x: 70, y: 350}
+    app.case-management: {x: 500, y: 350}
+    app.payment: {x: 770, y: 350}
+    app.notification: {x: 1040, y: 350}
+    data.citizen-profile: {x: 120, y: 495}
+    object.permit-application: {x: 350, y: 495}
+    data.permit-case: {x: 570, y: 495}
+    object.payment-receipt: {x: 790, y: 495}
+    object.permit-decision: {x: 1040, y: 495}
