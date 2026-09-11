@@ -64,6 +64,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Published portal is already current."
           else
-            git commit -m "docs: refresh generated EA portal [skip ci]"
+            git commit -m "docs: refresh generated EA portal"
             git push
           fi
