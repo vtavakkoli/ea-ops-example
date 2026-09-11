@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   architecture-gate:
@@ -50,3 +50,19 @@ jobs:
           path: |
             architecture-report.md
             site/
+
+      - name: Refresh published portal
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
+        run: |
+          mkdir -p docs
+          cp site/index.html docs/index.html
+          cp architecture-report.md docs/architecture-report.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html docs/architecture-report.md
+          if git diff --cached --quiet; then
+            echo "Published portal is already current."
+          else
+            git commit -m "docs: refresh generated EA portal [skip ci]"
+            git push
+          fi
