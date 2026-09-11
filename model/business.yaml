@@ -86,7 +86,7 @@
 - id: object.permit-application
   type: BusinessObject
   name: Permit Application
-  description: Business representation of the resident request, declarations and submitted evidence.
+  description: Business concept representing the resident request, declarations and submitted evidence.
   properties: {owner: Service Operations, lifecycle: active, classification: confidential}
 - id: object.permit-decision
   type: BusinessObject
@@ -98,3 +98,48 @@
   name: Payment Receipt
   description: Evidence that the required permit fee has been successfully settled.
   properties: {owner: Finance Services, lifecycle: active, classification: internal}
+- id: event.permit-request-received
+  type: BusinessEvent
+  name: Permit Request Received
+  description: A new permit request arrives from the resident and starts the digital permit journey.
+  properties: {owner: Digital Services, lifecycle: active, eventKind: message}
+- id: event.application-registered
+  type: BusinessEvent
+  name: Application Registered
+  description: Registration of the submitted application makes the case available for assessment.
+  properties: {owner: Service Operations, lifecycle: active, eventKind: signal}
+- id: event.assessment-completed
+  type: BusinessEvent
+  name: Assessment Completed
+  description: The administrative assessment is complete and the case can proceed to fee handling.
+  properties: {owner: Service Operations, lifecycle: active, eventKind: signal}
+- id: event.payment-window-opened
+  type: BusinessEvent
+  name: Payment Window Opened
+  description: The configured payment window becomes active for the assessed permit case.
+  properties: {owner: Finance Services, lifecycle: active, eventKind: timer}
+- id: event.payment-confirmed
+  type: BusinessEvent
+  name: Payment Confirmation Received
+  description: A payment confirmation message is received for the permit fee.
+  properties: {owner: Finance Services, lifecycle: active, eventKind: message}
+- id: event.decision-delivered
+  type: BusinessEvent
+  name: Decision Delivered
+  description: The final permit decision has been delivered to the applicant.
+  properties: {owner: Digital Services, lifecycle: active, eventKind: message}
+- id: representation.application-pdf
+  type: Representation
+  name: Permit Application PDF
+  description: Human-readable PDF representation of the submitted permit application.
+  properties: {owner: Service Operations, lifecycle: active, classification: confidential, format: PDF}
+- id: representation.receipt-pdf
+  type: Representation
+  name: Payment Receipt PDF
+  description: Downloadable PDF representation of the payment receipt.
+  properties: {owner: Finance Services, lifecycle: active, classification: internal, format: PDF}
+- id: representation.decision-letter
+  type: Representation
+  name: Permit Decision Letter
+  description: Human-readable PDF representation of the formal permit decision.
+  properties: {owner: Service Operations, lifecycle: active, classification: confidential, format: PDF}
