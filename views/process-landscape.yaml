@@ -2,24 +2,36 @@ id: view.permit-process-landscape
 name: Permit Process Landscape
 root: process.submit-permit
 include:
-  depth: 3
-  types: [BusinessActor, BusinessRole, BusinessProcess, ApplicationComponent, ApplicationService, BusinessObject, DataObject]
+  depth: 4
+  types: [BusinessActor, BusinessRole, BusinessProcess, BusinessEvent, ApplicationComponent, ApplicationService, BusinessObject, DataObject, Representation]
 layout:
   direction: LR
   positions:
-    role.applicant: {x: 230, y: 72}
-    role.case-worker: {x: 500, y: 72}
-    process.submit-permit: {x: 230, y: 205}
-    process.assess-case: {x: 500, y: 205}
-    process.collect-payment: {x: 770, y: 205}
-    process.issue-decision: {x: 1040, y: 205}
-    app.citizen-portal: {x: 230, y: 350}
-    service.identity: {x: 70, y: 350}
-    app.case-management: {x: 500, y: 350}
-    app.payment: {x: 770, y: 350}
-    app.notification: {x: 1040, y: 350}
-    data.citizen-profile: {x: 120, y: 495}
-    object.permit-application: {x: 350, y: 495}
-    data.permit-case: {x: 570, y: 495}
-    object.payment-receipt: {x: 790, y: 495}
-    object.permit-decision: {x: 1040, y: 495}
+    role.applicant: {x: 340, y: 82}
+    role.case-worker: {x: 820, y: 82}
+
+    event.permit-request-received: {x: 120, y: 235}
+    process.submit-permit: {x: 340, y: 235}
+    event.application-registered: {x: 570, y: 235}
+    process.assess-case: {x: 820, y: 235}
+    event.assessment-completed: {x: 1060, y: 235}
+    event.payment-window-opened: {x: 1280, y: 235}
+    process.collect-payment: {x: 1510, y: 235}
+    event.payment-confirmed: {x: 1740, y: 235}
+    process.issue-decision: {x: 1970, y: 235}
+    event.decision-delivered: {x: 2200, y: 235}
+
+    service.identity: {x: 150, y: 385}
+    app.citizen-portal: {x: 340, y: 385}
+    app.case-management: {x: 820, y: 385}
+    app.payment: {x: 1510, y: 385}
+    app.notification: {x: 1970, y: 385}
+
+    data.citizen-profile: {x: 160, y: 540}
+    representation.application-pdf: {x: 360, y: 540}
+    object.permit-application: {x: 570, y: 540}
+    data.permit-case: {x: 820, y: 540}
+    representation.receipt-pdf: {x: 1390, y: 540}
+    object.payment-receipt: {x: 1600, y: 540}
+    object.permit-decision: {x: 1900, y: 540}
+    representation.decision-letter: {x: 2140, y: 540}
