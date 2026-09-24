@@ -1,0 +1,10 @@
+id: CR10
+description: Promote the payment process from high to critical while preserving its service support.
+changed_ids: [process.collect-payment]
+expected_errors: []
+operations:
+  - op: set_property
+    file: model/business.yaml
+    id: process.collect-payment
+    property: criticality
+    value: critical

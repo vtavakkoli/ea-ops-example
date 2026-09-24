@@ -1,0 +1,10 @@
+id: CR05
+description: Move the container platform node into a migration lifecycle.
+changed_ids: [tech.openshift]
+expected_errors: []
+operations:
+  - op: set_property
+    file: model/technology.yaml
+    id: tech.openshift
+    property: lifecycle
+    value: migrate

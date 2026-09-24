@@ -228,3 +228,17 @@ EA-Ops framework: https://github.com/vtavakkoli/ea-ops
 ## License
 
 Apache License 2.0.
+
+
+## Research case-study evaluation
+
+The `research/` directory turns Metroville into a controlled empirical case study for EA-Ops. Ten architecture-change scenarios are applied from declarative manifests, validated in GitHub Actions, and evaluated against an independent graph-traversal oracle.
+
+Run **Actions → Metroville Research Scenarios → Run workflow**. The workflow publishes:
+
+- one CSV row per controlled architecture change;
+- exact validation pass/fail results;
+- exact impact-set agreement against an independent BFS implementation; and
+- generated unified patches showing every model change applied by each scenario.
+
+This separates the research oracle from EA-Ops's own impact implementation while keeping the experiment fully reproducible from Git.
