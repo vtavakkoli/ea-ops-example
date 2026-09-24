@@ -2,10 +2,10 @@ id: CR08
 description: Replace an application-to-application flow with an invalid Access relationship.
 changed_ids: [app.case-management]
 expected_errors:
-  - {code: INVALID_RELATIONSHIP, object_id: rel-case-payment}
+  - {code: INVALID_RELATIONSHIP, object_id: rel-case-payment-flow}
 operations:
   - op: set_field
     file: relationships/relationships.yaml
-    id: rel-case-payment
+    id: rel-case-payment-flow
     field: type
     value: Access
