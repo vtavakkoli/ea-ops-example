@@ -1,0 +1,16 @@
+id: CR09
+description: Add a governed appeal-review process and assign the case-worker role.
+changed_ids: [process.review-appeal]
+expected_errors: []
+operations:
+  - op: add_item
+    file: model/business.yaml
+    item:
+      id: process.review-appeal
+      type: BusinessProcess
+      name: Review Permit Appeal
+      description: Controlled research process added to evaluate governed model extension.
+      properties: {owner: Service Operations, lifecycle: active, criticality: normal}
+  - op: add_item
+    file: relationships/relationships.yaml
+    item: {id: rel-caseworker-review-appeal, type: Assignment, source: role.case-worker, target: process.review-appeal}

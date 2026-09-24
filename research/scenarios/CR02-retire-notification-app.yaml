@@ -1,0 +1,10 @@
+id: CR02
+description: Mark the notification application for elimination.
+changed_ids: [app.notification]
+expected_errors: []
+operations:
+  - op: set_property
+    file: model/application.yaml
+    id: app.notification
+    property: lifecycle
+    value: eliminate

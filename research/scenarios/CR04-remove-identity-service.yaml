@@ -1,0 +1,10 @@
+id: CR04
+description: Remove the identity application service while retaining its existing relationships.
+changed_ids: [service.identity]
+expected_errors:
+  - {code: MISSING_TARGET, object_id: rel-identity-service}
+  - {code: MISSING_SOURCE, object_id: rel-identity-submit}
+operations:
+  - op: remove_item
+    file: model/application.yaml
+    id: service.identity

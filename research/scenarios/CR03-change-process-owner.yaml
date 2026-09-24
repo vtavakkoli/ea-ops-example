@@ -1,0 +1,10 @@
+id: CR03
+description: Transfer ownership of permit assessment to a new accountable team.
+changed_ids: [process.assess-case]
+expected_errors: []
+operations:
+  - op: set_property
+    file: model/business.yaml
+    id: process.assess-case
+    property: owner
+    value: Permit Operations

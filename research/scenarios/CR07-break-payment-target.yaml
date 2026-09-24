@@ -1,0 +1,11 @@
+id: CR07
+description: Introduce a dangling target in the case-to-payment flow.
+changed_ids: [app.case-management]
+expected_errors:
+  - {code: MISSING_TARGET, object_id: rel-case-payment}
+operations:
+  - op: set_field
+    file: relationships/relationships.yaml
+    id: rel-case-payment
+    field: target
+    value: app.missing-payment

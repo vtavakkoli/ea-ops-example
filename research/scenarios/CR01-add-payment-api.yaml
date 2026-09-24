@@ -1,0 +1,19 @@
+id: CR01
+description: Add a dedicated payment application service and connect it to the payment process.
+changed_ids: [service.payment-api]
+expected_errors: []
+operations:
+  - op: add_item
+    file: model/application.yaml
+    item:
+      id: service.payment-api
+      type: ApplicationService
+      name: Payment API Service
+      description: Controlled research addition for payment-service integration.
+      properties: {owner: Finance Technology, lifecycle: strategic}
+  - op: add_item
+    file: relationships/relationships.yaml
+    item: {id: rel-payment-realizes-api, type: Realization, source: app.payment, target: service.payment-api}
+  - op: add_item
+    file: relationships/relationships.yaml
+    item: {id: rel-payment-api-process, type: Serving, source: service.payment-api, target: process.collect-payment}
