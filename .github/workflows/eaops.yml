@@ -25,12 +25,12 @@ jobs:
           fetch-depth: 0
 
       - name: EA-Ops architecture gate
-        uses: vtavakkoli/ea-ops@main
+        uses: vtavakkoli/ea-ops@dc270b716a8f30507d01c1d934d99a03a15f226a # Tested daily workspace revision
         with:
           root: .
 
       - name: Install EA-Ops CLI for reports
-        run: python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@main"
+        run: python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@dc270b716a8f30507d01c1d934d99a03a15f226a"
 
       - name: Architecture summary
         run: |

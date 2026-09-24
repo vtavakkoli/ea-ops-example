@@ -9,13 +9,13 @@ python -m venv .venv
 # macOS / Linux:
 source .venv/bin/activate
 # Windows PowerShell instead: .venv\Scripts\Activate.ps1
-python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@main"
+python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@dc270b716a8f30507d01c1d934d99a03a15f226a"
 eaops validate .
 eaops build . -o site
 python -m http.server 8000 --directory site --bind 127.0.0.1
 ```
 
-The workspace features require the companion EA-Ops workspace change to be merged first. To try both pull requests together, install the checked-out framework with `python -m pip install -e ../ea-ops` instead of the Git URL above.
+The example pins its CLI and CI action to the same tested framework commit. Update both references together when upgrading. To develop both repositories locally, install the checked-out framework with `python -m pip install -e ../ea-ops` instead of the Git URL above.
 
 Open http://localhost:8000. You can also open `site/index.html` directly, but local-file storage and clipboard permissions vary by browser. A stable HTTP URL gives personal shortcuts a consistent location. Stop the local server with Ctrl+C.
 
