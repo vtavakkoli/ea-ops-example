@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/assets/ea-ops.svg" width="80" height="80" alt="EA Ops connected architecture icon"></p>
+
 # EA-Ops Reference Architecture — Metroville Digital Permit Service
 
 > A complete, fictional Enterprise Architecture-as-Code example showing how EA-Ops models, validates, reviews, governs, and publishes a cross-layer architecture through Git.
@@ -5,6 +7,26 @@
 [![EA-Ops](https://img.shields.io/badge/EA--Ops-reference%20example-1f6feb)](https://github.com/vtavakkoli/ea-ops)
 [![Model](https://img.shields.io/badge/model-ArchiMate%203.2-5c6ac4)](https://github.com/vtavakkoli/ea-ops)
 [![Governance](https://img.shields.io/badge/governance-as%20code-2ea44f)](rules/governance.yaml)
+
+## A workspace for everyday architecture
+
+**Python 3.10+ · PyYAML · YAML models · Vanilla JavaScript · SVG · GitHub Actions**
+
+Find the system you need, see who owns it, inspect its dependencies, and bring a clear shortlist to your next architecture review.
+
+| Everyday task | Where to start |
+| --- | --- |
+| Find a system or its owner | **Catalog**: search names, IDs, descriptions, and owners |
+| Prepare a review | Filter by layer, owner, favorites, or high / critical assets |
+| Return to your work | Star objects and use **Recently opened** on the overview |
+| Share architecture context | Open an object and choose **Copy direct link** |
+| Take a shortlist into a meeting | **Export CSV** exports the current catalog filters |
+| Check model health | **Review priorities** and **Governance** |
+| Inspect connections | **Explore dependencies**, then choose one to three hops |
+
+Press **/** to focus search, type a query, and press **Enter**. The portal runs without a frontend build step or external JavaScript services. Favorites and recent items stay in this browser; reviewed YAML in Git remains the shared source of truth.
+
+[Read the daily workflow guide](docs/daily-workflow.md).
 
 ## Live interactive architecture portal
 
