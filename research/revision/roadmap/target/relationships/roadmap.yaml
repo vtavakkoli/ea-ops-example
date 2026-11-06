@@ -1,0 +1,16 @@
+- id: rel-gap-current
+  type: Association
+  source: gap.manual-channels
+  target: plateau.current
+- id: rel-gap-target
+  type: Association
+  source: gap.manual-channels
+  target: plateau.digital-permit-live
+- id: rel-work-target
+  type: Realization
+  source: work.permit-modernization
+  target: deliverable.target-platform
+- id: rel-target-platform
+  type: Assignment
+  source: tech.target-runtime
+  target: tech.container-platform

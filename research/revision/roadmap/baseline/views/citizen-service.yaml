@@ -1,0 +1,6 @@
+id: view.citizen-service
+name: Citizen Permit Journey
+root: service.digital-permit
+include:
+  depth: 3
+  types: [BusinessActor, BusinessRole, BusinessProcess, BusinessService, BusinessObject, ApplicationComponent, ApplicationService, DataObject]

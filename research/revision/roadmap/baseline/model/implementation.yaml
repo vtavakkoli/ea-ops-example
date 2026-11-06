@@ -1,0 +1,25 @@
+- id: work.permit-modernization
+  type: WorkPackage
+  name: Digital Permit Modernization
+  description: Delivery initiative establishing the target permit platform and migration operating model.
+  properties: {owner: Transformation Office, lifecycle: in-progress}
+- id: deliverable.target-platform
+  type: Deliverable
+  name: Target Digital Permit Platform
+  description: Production-ready service platform implementing the target cross-layer architecture.
+  properties: {owner: Digital Platforms, lifecycle: planned}
+- id: deliverable.operating-model
+  type: Deliverable
+  name: EA-Ops Governance Operating Model
+  description: Pull-request, ownership and validation practices used to govern architecture change.
+  properties: {owner: Enterprise Architecture, lifecycle: planned}
+- id: plateau.digital-permit-live
+  type: Plateau
+  name: Digital Permit Service Live
+  description: Target state in which residents use the integrated digital service as the primary channel.
+  properties: {owner: Service Directorate, lifecycle: target}
+- id: gap.manual-channels
+  type: Gap
+  name: Fragmented Manual Channels
+  description: Gap between current email/paper handoffs and the governed digital target state.
+  properties: {owner: Transformation Office, lifecycle: closing}

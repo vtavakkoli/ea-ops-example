@@ -1,0 +1,19 @@
+- id: plateau.current
+  type: Plateau
+  name: Reviewed baseline
+  properties:
+    owner: Enterprise Architecture
+    lifecycle: baseline
+- id: plateau.transition
+  type: Plateau
+  name: Parallel platform transition
+  properties:
+    owner: Enterprise Architecture
+    lifecycle: transition
+- id: tech.target-runtime
+  type: Node
+  name: Target platform runtime
+  description: Parallel replacement platform for the reviewed permit service.
+  properties:
+    owner: Digital Platforms
+    lifecycle: active

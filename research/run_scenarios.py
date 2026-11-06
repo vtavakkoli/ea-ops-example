@@ -11,6 +11,7 @@ import tempfile
 import yaml
 
 from eaops.core import impact, load_repository, validate
+from eaops.compare import change_impact
 
 
 BASE_ITEMS = ("eaops.yaml", "model", "relationships", "views", "rules")
@@ -25,6 +26,7 @@ def _save(path: Path, data) -> None:
 
 
 def _copy_base(source: Path, target: Path) -> None:
+    target.mkdir(parents=True, exist_ok=True)
     for name in BASE_ITEMS:
         src = source / name
         dst = target / name
@@ -100,6 +102,59 @@ def independent_impact(root: Path, changed_ids: set[str]) -> set[str]:
     return impacted
 
 
+def independent_dependency(root: Path, seeds: set[str], max_depth: int | None = None) -> set[str]:
+    """Fixed-point scan over raw YAML, independent of the product's adjacency BFS.
+
+    The propagation policy is shared by specification, not by imported code.
+    Agreement checks that policy's implementation, not real business impact.
+    """
+    found = set(seeds)
+    rels = _documents(root / "relationships")
+    waves = 0
+    while True:
+        if max_depth is not None and waves >= max_depth:
+            return found
+        previous = set(found)
+        for rel in rels:
+            s, t, kind = rel.get("source"), rel.get("target"), rel.get("type")
+            if not s or not t:
+                continue
+            if kind in ("Serving", "Realization", "Assignment", "Triggering", "Flow") and s in previous:
+                found.add(t)
+            if kind in ("Composition", "Aggregation") and t in previous:
+                found.add(s)
+            if kind == "Access":
+                properties = rel.get("properties") or {}
+                access = str(properties.get("accessType") or properties.get("access") or "access").lower()
+                if access in ("readwrite", "read/write"):
+                    access = "read-write"
+                if access in ("read", "read-write", "access") and t in previous:
+                    found.add(s)
+                if access in ("write", "read-write", "access") and s in previous:
+                    found.add(t)
+        if found == previous:
+            return found
+        waves += 1
+
+
+def independent_review(base: Path, target: Path, operations: list[dict]) -> set[str]:
+    local, seeds = set(), set()
+    for operation in operations:
+        if operation["file"].startswith("relationships/"):
+            rid = operation.get("id", (operation.get("item") or {}).get("id"))
+            for root in (base, target):
+                for rel in _documents(root / "relationships"):
+                    if rel.get("id") == rid:
+                        seeds.update(x for x in (rel.get("source"), rel.get("target")) if x)
+        elif operation["file"].startswith("model/"):
+            oid = operation.get("id", (operation.get("item") or {}).get("id"))
+            if operation["op"] == "set_property" and operation.get("property") == "owner":
+                local.add(oid)
+            else:
+                seeds.add(oid)
+    return independent_dependency(base, seeds) | independent_dependency(target, seeds) | local
+
+
 def _patch(before: dict[Path, str], root: Path) -> str:
     chunks = []
     for path in sorted(before, key=lambda p: str(p)):
@@ -143,6 +198,13 @@ def run_scenario(base: Path, scenario_path: Path, patch_dir: Path) -> dict:
         actual_impact = set(impact(repo, changed)["impacted"])
         oracle_impact = independent_impact(root, changed)
         impact_exact = actual_impact == oracle_impact
+        review = change_impact(load_repository(base), repo)
+        expected_review = independent_review(base, root, spec.get("operations", []))
+        review_exact = set(review["impacted"]) == expected_review
+        typed_current = impact(repo, changed, profile="dependency")
+        bounded = impact(repo, changed, profile="dependency", max_depth=2)
+        typed_exact = set(typed_current["impacted"]) == independent_dependency(root, changed)
+        bounded_exact = set(bounded["impacted"]) == independent_dependency(root, changed, max_depth=2)
 
         patch_dir.mkdir(parents=True, exist_ok=True)
         (patch_dir / f"{spec['id']}.patch").write_text(_patch(before, root), encoding="utf-8")
@@ -156,7 +218,13 @@ def run_scenario(base: Path, scenario_path: Path, patch_dir: Path) -> dict:
             "validation_exact": str(validation_exact).lower(),
             "impact_size": len(actual_impact),
             "impact_exact": str(impact_exact).lower(),
-            "overall_pass": str(validation_exact and impact_exact).lower(),
+            "typed_current_size": len(typed_current["impacted"]),
+            "typed_two_hop_size": len(bounded["impacted"]),
+            "review_scope_size": len(review["impacted"]),
+            "review_scope_ids": ";".join(review["impacted"]),
+            "review_exact": str(review_exact).lower(),
+            "typed_exact": str(typed_exact and bounded_exact).lower(),
+            "overall_pass": str(validation_exact and impact_exact and review_exact and typed_exact and bounded_exact).lower(),
         }
 
 

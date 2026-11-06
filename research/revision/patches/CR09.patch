@@ -1,0 +1,766 @@
+--- a/model/business.yaml
++++ b/model/business.yaml
+@@ -1,145 +1,250 @@
+ - id: capability.digital-public-service
+   type: Capability
+   name: Digital Public Service Delivery
+-  description: Ability to deliver accessible end-to-end public services through secure digital channels.
+-  properties: {owner: Digital Strategy Office, lifecycle: strategic}
++  description: Ability to deliver accessible end-to-end public services through secure
++    digital channels.
++  properties:
++    owner: Digital Strategy Office
++    lifecycle: strategic
+ - id: capability.case-management
+   type: Capability
+   name: Case Management
+-  description: Ability to register, assess, decide and track regulated service cases consistently.
+-  properties: {owner: Service Operations, lifecycle: strategic}
++  description: Ability to register, assess, decide and track regulated service cases
++    consistently.
++  properties:
++    owner: Service Operations
++    lifecycle: strategic
+ - id: capability.secure-digital-identity
+   type: Capability
+   name: Secure Digital Identity
+-  description: Ability to authenticate residents and protect service access with trusted identity controls.
+-  properties: {owner: Identity & Security, lifecycle: strategic}
++  description: Ability to authenticate residents and protect service access with trusted
++    identity controls.
++  properties:
++    owner: Identity & Security
++    lifecycle: strategic
+ - id: capability.operational-resilience
+   type: Capability
+   name: Operational Resilience
+-  description: Ability to detect, respond to and recover from failures affecting digital public services.
+-  properties: {owner: IT Operations, lifecycle: strategic}
++  description: Ability to detect, respond to and recover from failures affecting digital
++    public services.
++  properties:
++    owner: IT Operations
++    lifecycle: strategic
+ - id: value.permit-to-decision
+   type: ValueStream
+   name: Permit to Decision
+-  description: Resident value stream from submitting a permit request through receiving the final decision.
+-  properties: {owner: Public Service Design, lifecycle: strategic}
++  description: Resident value stream from submitting a permit request through receiving
++    the final decision.
++  properties:
++    owner: Public Service Design
++    lifecycle: strategic
+ - id: actor.resident
+   type: BusinessActor
+   name: Resident
+   description: Person requesting a municipal permit through digital or assisted channels.
+-  properties: {owner: Public Service Design, lifecycle: active}
++  properties:
++    owner: Public Service Design
++    lifecycle: active
+ - id: actor.service-department
+   type: BusinessActor
+   name: Municipal Service Department
+   description: Organizational actor accountable for permit assessment and decision-making.
+-  properties: {owner: Service Directorate, lifecycle: active}
++  properties:
++    owner: Service Directorate
++    lifecycle: active
+ - id: role.applicant
+   type: BusinessRole
+   name: Permit Applicant
+-  description: Role performed by a resident when submitting and tracking a permit request.
+-  properties: {owner: Public Service Design, lifecycle: active}
++  description: Role performed by a resident when submitting and tracking a permit
++    request.
++  properties:
++    owner: Public Service Design
++    lifecycle: active
+ - id: role.case-worker
+   type: BusinessRole
+   name: Permit Case Worker
+   description: Reviews permit evidence, requests clarification and prepares a decision.
+-  properties: {owner: Service Operations, lifecycle: active}
++  properties:
++    owner: Service Operations
++    lifecycle: active
+ - id: role.service-owner
+   type: BusinessRole
+   name: Digital Service Owner
+-  description: Accountable for the service lifecycle, performance and architecture change priorities.
+-  properties: {owner: Digital Services, lifecycle: active}
++  description: Accountable for the service lifecycle, performance and architecture
++    change priorities.
++  properties:
++    owner: Digital Services
++    lifecycle: active
+ - id: process.submit-permit
+   type: BusinessProcess
+   name: Submit Permit Application
+-  description: Authenticate the applicant, capture application data and register supporting evidence.
+-  properties: {owner: Digital Services, lifecycle: active, criticality: critical}
++  description: Authenticate the applicant, capture application data and register supporting
++    evidence.
++  properties:
++    owner: Digital Services
++    lifecycle: active
++    criticality: critical
+ - id: process.assess-case
+   type: BusinessProcess
+   name: Assess Permit Case
+-  description: Validate completeness, inspect evidence and prepare the administrative assessment.
+-  properties: {owner: Service Operations, lifecycle: active, criticality: critical}
++  description: Validate completeness, inspect evidence and prepare the administrative
++    assessment.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    criticality: critical
+ - id: process.collect-payment
+   type: BusinessProcess
+   name: Collect Permit Fee
+   description: Calculate, request and confirm payment associated with the permit case.
+-  properties: {owner: Finance Services, lifecycle: active, criticality: high}
++  properties:
++    owner: Finance Services
++    lifecycle: active
++    criticality: high
+ - id: process.issue-decision
+   type: BusinessProcess
+   name: Issue Permit Decision
+-  description: Record the approved or rejected decision and communicate it to the applicant.
+-  properties: {owner: Service Operations, lifecycle: active, criticality: critical}
++  description: Record the approved or rejected decision and communicate it to the
++    applicant.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    criticality: critical
+ - id: process.manage-incident
+   type: BusinessProcess
+   name: Manage Digital Service Incident
+-  description: Detect, triage and restore the permit service after an operational incident.
+-  properties: {owner: IT Operations, lifecycle: active, criticality: critical}
++  description: Detect, triage and restore the permit service after an operational
++    incident.
++  properties:
++    owner: IT Operations
++    lifecycle: active
++    criticality: critical
+ - id: process.manage-change
+   type: BusinessProcess
+   name: Govern Service Change
+-  description: Assess architecture impact, approve change and coordinate controlled service evolution.
+-  properties: {owner: Enterprise Architecture, lifecycle: active, criticality: high}
++  description: Assess architecture impact, approve change and coordinate controlled
++    service evolution.
++  properties:
++    owner: Enterprise Architecture
++    lifecycle: active
++    criticality: high
+ - id: service.digital-permit
+   type: BusinessService
+   name: Digital Permit Service
+-  description: Public-facing service for submitting, tracking and receiving decisions for permit requests.
+-  properties: {owner: Digital Services, lifecycle: strategic}
++  description: Public-facing service for submitting, tracking and receiving decisions
++    for permit requests.
++  properties:
++    owner: Digital Services
++    lifecycle: strategic
+ - id: object.permit-application
+   type: BusinessObject
+   name: Permit Application
+-  description: Business concept representing the resident request, declarations and submitted evidence.
+-  properties: {owner: Service Operations, lifecycle: active, classification: confidential}
++  description: Business concept representing the resident request, declarations and
++    submitted evidence.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    classification: confidential
+ - id: object.permit-decision
+   type: BusinessObject
+   name: Permit Decision
+   description: Formal administrative result of the permit assessment.
+-  properties: {owner: Service Operations, lifecycle: active, classification: confidential}
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    classification: confidential
+ - id: object.payment-receipt
+   type: BusinessObject
+   name: Payment Receipt
+   description: Evidence that the required permit fee has been successfully settled.
+-  properties: {owner: Finance Services, lifecycle: active, classification: internal}
++  properties:
++    owner: Finance Services
++    lifecycle: active
++    classification: internal
+ - id: event.permit-request-received
+   type: BusinessEvent
+   name: Permit Request Received
+-  description: A new permit request arrives from the resident and starts the digital permit journey.
+-  properties: {owner: Digital Services, lifecycle: active, eventKind: message}
++  description: A new permit request arrives from the resident and starts the digital
++    permit journey.
++  properties:
++    owner: Digital Services
++    lifecycle: active
++    eventKind: message
+ - id: event.application-registered
+   type: BusinessEvent
+   name: Application Registered
+-  description: Registration of the submitted application makes the case available for assessment.
+-  properties: {owner: Service Operations, lifecycle: active, eventKind: signal}
++  description: Registration of the submitted application makes the case available
++    for assessment.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    eventKind: signal
+ - id: event.assessment-completed
+   type: BusinessEvent
+   name: Assessment Completed
+-  description: The administrative assessment is complete and the case can proceed to fee handling.
+-  properties: {owner: Service Operations, lifecycle: active, eventKind: signal}
++  description: The administrative assessment is complete and the case can proceed
++    to fee handling.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    eventKind: signal
+ - id: event.payment-window-opened
+   type: BusinessEvent
+   name: Payment Window Opened
+-  description: The configured payment window becomes active for the assessed permit case.
+-  properties: {owner: Finance Services, lifecycle: active, eventKind: timer}
++  description: The configured payment window becomes active for the assessed permit
++    case.
++  properties:
++    owner: Finance Services
++    lifecycle: active
++    eventKind: timer
+ - id: event.payment-confirmed
+   type: BusinessEvent
+   name: Payment Confirmation Received
+   description: A payment confirmation message is received for the permit fee.
+-  properties: {owner: Finance Services, lifecycle: active, eventKind: message}
++  properties:
++    owner: Finance Services
++    lifecycle: active
++    eventKind: message
+ - id: event.decision-delivered
+   type: BusinessEvent
+   name: Decision Delivered
+   description: The final permit decision has been delivered to the applicant.
+-  properties: {owner: Digital Services, lifecycle: active, eventKind: message}
++  properties:
++    owner: Digital Services
++    lifecycle: active
++    eventKind: message
+ - id: representation.application-pdf
+   type: Representation
+   name: Permit Application PDF
+   description: Human-readable PDF representation of the submitted permit application.
+-  properties: {owner: Service Operations, lifecycle: active, classification: confidential, format: PDF}
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    classification: confidential
++    format: PDF
+ - id: representation.receipt-pdf
+   type: Representation
+   name: Payment Receipt PDF
+   description: Downloadable PDF representation of the payment receipt.
+-  properties: {owner: Finance Services, lifecycle: active, classification: internal, format: PDF}
++  properties:
++    owner: Finance Services
++    lifecycle: active
++    classification: internal
++    format: PDF
+ - id: representation.decision-letter
+   type: Representation
+   name: Permit Decision Letter
+   description: Human-readable PDF representation of the formal permit decision.
+-  properties: {owner: Service Operations, lifecycle: active, classification: confidential, format: PDF}
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    classification: confidential
++    format: PDF
++- id: process.review-appeal
++  type: BusinessProcess
++  name: Review Permit Appeal
++  description: Controlled research process added to evaluate governed model extension.
++  properties:
++    owner: Service Operations
++    lifecycle: active
++    criticality: normal
+--- a/relationships/relationships.yaml
++++ b/relationships/relationships.yaml
+@@ -1,85 +1,378 @@
+-- {id: rel.cap-digital-submit, type: Association, source: capability.digital-public-service, target: process.submit-permit}
+-- {id: rel.cap-digital-decision, type: Association, source: capability.digital-public-service, target: process.issue-decision}
+-- {id: rel.cap-case-assess, type: Association, source: capability.case-management, target: process.assess-case}
+-- {id: rel.cap-identity-submit, type: Association, source: capability.secure-digital-identity, target: process.submit-permit}
+-- {id: rel.cap-resilience-incident, type: Association, source: capability.operational-resilience, target: process.manage-incident}
+-- {id: rel-value-submit, type: Association, source: value.permit-to-decision, target: process.submit-permit}
+-- {id: rel-resident-applicant, type: Assignment, source: actor.resident, target: role.applicant}
+-- {id: rel-dept-caseworker, type: Assignment, source: actor.service-department, target: role.case-worker}
+-- {id: rel-applicant-submit, type: Assignment, source: role.applicant, target: process.submit-permit}
+-- {id: rel-caseworker-assess, type: Assignment, source: role.case-worker, target: process.assess-case}
+-- {id: rel-owner-change, type: Assignment, source: role.service-owner, target: process.manage-change}
+-- {id: rel-request-starts-submit, type: Triggering, source: event.permit-request-received, target: process.submit-permit}
+-- {id: rel-submit-registers, type: Triggering, source: process.submit-permit, target: event.application-registered}
+-- {id: rel-registration-starts-assess, type: Triggering, source: event.application-registered, target: process.assess-case}
+-- {id: rel-assess-completes, type: Triggering, source: process.assess-case, target: event.assessment-completed}
+-- {id: rel-assessment-opens-window, type: Triggering, source: event.assessment-completed, target: event.payment-window-opened}
+-- {id: rel-window-starts-payment, type: Triggering, source: event.payment-window-opened, target: process.collect-payment}
+-- {id: rel-payment-confirms, type: Triggering, source: process.collect-payment, target: event.payment-confirmed}
+-- {id: rel-confirmation-starts-decision, type: Triggering, source: event.payment-confirmed, target: process.issue-decision}
+-- {id: rel-decision-delivered, type: Triggering, source: process.issue-decision, target: event.decision-delivered}
+-- {id: rel-submit-application, type: Access, source: process.submit-permit, target: object.permit-application, properties: {accessType: write}}
+-- {id: rel-submit-application-pdf, type: Access, source: process.submit-permit, target: representation.application-pdf, properties: {accessType: write}}
+-- {id: rel-assess-application, type: Access, source: process.assess-case, target: object.permit-application, properties: {accessType: read}}
+-- {id: rel-assess-case-data, type: Access, source: process.assess-case, target: data.permit-case, properties: {accessType: read-write}}
+-- {id: rel-decision-object, type: Access, source: process.issue-decision, target: object.permit-decision, properties: {accessType: write}}
+-- {id: rel-decision-letter-access, type: Access, source: process.issue-decision, target: representation.decision-letter, properties: {accessType: write}}
+-- {id: rel-payment-receipt, type: Access, source: process.collect-payment, target: object.payment-receipt, properties: {accessType: write}}
+-- {id: rel-payment-receipt-pdf, type: Access, source: process.collect-payment, target: representation.receipt-pdf, properties: {accessType: write}}
+-- {id: rel-submit-citizen, type: Access, source: process.submit-permit, target: data.citizen-profile, properties: {accessType: read}}
+-- {id: rel-incident-audit, type: Access, source: process.manage-incident, target: data.audit-event, properties: {accessType: read}}
+-- {id: rel-application-pdf-realizes, type: Realization, source: representation.application-pdf, target: object.permit-application}
+-- {id: rel-receipt-pdf-realizes, type: Realization, source: representation.receipt-pdf, target: object.payment-receipt}
+-- {id: rel-decision-letter-realizes, type: Realization, source: representation.decision-letter, target: object.permit-decision}
+-- {id: rel-service-submit, type: Association, source: service.digital-permit, target: process.submit-permit}
+-- {id: rel-service-decision, type: Association, source: service.digital-permit, target: process.issue-decision}
+-- {id: rel-portal-service, type: Realization, source: app.citizen-portal, target: service.digital-permit}
+-- {id: rel-case-service, type: Realization, source: app.case-management, target: service.digital-permit}
+-- {id: rel-permit-api-business-service, type: Realization, source: service.permit-api, target: service.digital-permit}
+-- {id: rel-gateway-api, type: Realization, source: app.api-gateway, target: service.permit-api}
+-- {id: rel-identity-service, type: Realization, source: app.identity-access, target: service.identity}
+-- {id: rel-portal-submit, type: Serving, source: app.citizen-portal, target: process.submit-permit}
+-- {id: rel-identity-submit, type: Serving, source: service.identity, target: process.submit-permit}
+-- {id: rel-case-assess, type: Serving, source: app.case-management, target: process.assess-case}
+-- {id: rel-payment-process, type: Serving, source: app.payment, target: process.collect-payment}
+-- {id: rel-case-decision, type: Serving, source: app.case-management, target: process.issue-decision}
+-- {id: rel-notify-decision, type: Serving, source: app.notification, target: process.issue-decision}
+-- {id: rel-itsm-incident, type: Serving, source: app.itsm, target: process.manage-incident}
+-- {id: rel-observe-incident, type: Serving, source: app.observability, target: process.manage-incident}
+-- {id: rel-itsm-change, type: Serving, source: app.itsm, target: process.manage-change}
+-- {id: rel-gateway-portal, type: Serving, source: app.api-gateway, target: app.citizen-portal}
+-- {id: rel-doc-case, type: Serving, source: app.document-management, target: app.case-management}
+-- {id: rel-notify-case, type: Serving, source: app.notification, target: app.case-management}
+-- {id: rel-payment-case, type: Serving, source: app.payment, target: app.case-management}
+-- {id: rel-portal-gateway-flow, type: Flow, source: app.citizen-portal, target: app.api-gateway}
+-- {id: rel-gateway-case-flow, type: Flow, source: app.api-gateway, target: app.case-management}
+-- {id: rel-case-doc-flow, type: Flow, source: app.case-management, target: app.document-management}
+-- {id: rel-case-payment-flow, type: Flow, source: app.case-management, target: app.payment}
+-- {id: rel-case-notify-flow, type: Flow, source: app.case-management, target: app.notification}
+-- {id: rel-portal-identity-flow, type: Flow, source: app.citizen-portal, target: app.identity-access}
+-- {id: rel-container-portal, type: Serving, source: tech.container-platform, target: app.citizen-portal}
+-- {id: rel-container-case, type: Serving, source: tech.container-platform, target: app.case-management}
+-- {id: rel-container-gateway, type: Serving, source: tech.container-platform, target: app.api-gateway}
+-- {id: rel-database-case, type: Serving, source: tech.database-service, target: app.case-management}
+-- {id: rel-messaging-notify, type: Serving, source: tech.messaging-service, target: app.notification}
+-- {id: rel-monitor-observe, type: Serving, source: tech.monitoring-service, target: app.observability}
+-- {id: rel-openshift-runtime, type: Assignment, source: tech.openshift, target: tech.container-platform}
+-- {id: rel-postgresql-database, type: Assignment, source: tech.postgresql, target: tech.database-service}
+-- {id: rel-openshift-kafka, type: Composition, source: tech.openshift, target: tech.kafka}
+-- {id: rel-kafka-messaging, type: Association, source: tech.kafka, target: tech.messaging-service}
+-- {id: rel-residents-digital, type: Influence, source: stakeholder.residents, target: driver.digital-first, properties: {strength: "+"}}
+-- {id: rel-leadership-compliance, type: Influence, source: stakeholder.service-department, target: driver.compliance, properties: {strength: "+"}}
+-- {id: rel-digital-completion, type: Influence, source: driver.digital-first, target: goal.digital-completion, properties: {strength: "++"}}
+-- {id: rel-digital-speed, type: Influence, source: driver.digital-first, target: goal.fast-decision, properties: {strength: "+"}}
+-- {id: rel-compliance-audit, type: Influence, source: driver.compliance, target: requirement.auditability, properties: {strength: "++"}}
+-- {id: rel-completion-availability, type: Influence, source: goal.digital-completion, target: requirement.availability, properties: {strength: "+"}}
+-- {id: rel-risk-audit, type: Influence, source: assessment.legacy-risk, target: requirement.auditability, properties: {strength: "+++"}}
+-- {id: rel-audit-events, type: Association, source: requirement.auditability, target: data.audit-event}
+-- {id: rel-residency-citizen, type: Association, source: constraint.data-residency, target: data.citizen-profile}
+-- {id: rel-availability-runtime, type: Association, source: requirement.availability, target: tech.container-platform}
+-- {id: rel-work-audit, type: Realization, source: work.permit-modernization, target: requirement.auditability}
+-- {id: rel-work-platform, type: Realization, source: work.permit-modernization, target: deliverable.target-platform}
+-- {id: rel-work-operating-model, type: Realization, source: work.permit-modernization, target: deliverable.operating-model}
+-- {id: rel-platform-plateau, type: Association, source: deliverable.target-platform, target: plateau.digital-permit-live}
+-- {id: rel-gap-work, type: Association, source: gap.manual-channels, target: work.permit-modernization}
+-- {id: rel-work-change, type: Association, source: work.permit-modernization, target: process.manage-change}
++- id: rel.cap-digital-submit
++  type: Association
++  source: capability.digital-public-service
++  target: process.submit-permit
++- id: rel.cap-digital-decision
++  type: Association
++  source: capability.digital-public-service
++  target: process.issue-decision
++- id: rel.cap-case-assess
++  type: Association
++  source: capability.case-management
++  target: process.assess-case
++- id: rel.cap-identity-submit
++  type: Association
++  source: capability.secure-digital-identity
++  target: process.submit-permit
++- id: rel.cap-resilience-incident
++  type: Association
++  source: capability.operational-resilience
++  target: process.manage-incident
++- id: rel-value-submit
++  type: Association
++  source: value.permit-to-decision
++  target: process.submit-permit
++- id: rel-resident-applicant
++  type: Assignment
++  source: actor.resident
++  target: role.applicant
++- id: rel-dept-caseworker
++  type: Assignment
++  source: actor.service-department
++  target: role.case-worker
++- id: rel-applicant-submit
++  type: Assignment
++  source: role.applicant
++  target: process.submit-permit
++- id: rel-caseworker-assess
++  type: Assignment
++  source: role.case-worker
++  target: process.assess-case
++- id: rel-owner-change
++  type: Assignment
++  source: role.service-owner
++  target: process.manage-change
++- id: rel-request-starts-submit
++  type: Triggering
++  source: event.permit-request-received
++  target: process.submit-permit
++- id: rel-submit-registers
++  type: Triggering
++  source: process.submit-permit
++  target: event.application-registered
++- id: rel-registration-starts-assess
++  type: Triggering
++  source: event.application-registered
++  target: process.assess-case
++- id: rel-assess-completes
++  type: Triggering
++  source: process.assess-case
++  target: event.assessment-completed
++- id: rel-assessment-opens-window
++  type: Triggering
++  source: event.assessment-completed
++  target: event.payment-window-opened
++- id: rel-window-starts-payment
++  type: Triggering
++  source: event.payment-window-opened
++  target: process.collect-payment
++- id: rel-payment-confirms
++  type: Triggering
++  source: process.collect-payment
++  target: event.payment-confirmed
++- id: rel-confirmation-starts-decision
++  type: Triggering
++  source: event.payment-confirmed
++  target: process.issue-decision
++- id: rel-decision-delivered
++  type: Triggering
++  source: process.issue-decision
++  target: event.decision-delivered
++- id: rel-submit-application
++  type: Access
++  source: process.submit-permit
++  target: object.permit-application
++  properties:
++    accessType: write
++- id: rel-submit-application-pdf
++  type: Access
++  source: process.submit-permit
++  target: representation.application-pdf
++  properties:
++    accessType: write
++- id: rel-assess-application
++  type: Access
++  source: process.assess-case
++  target: object.permit-application
++  properties:
++    accessType: read
++- id: rel-assess-case-data
++  type: Access
++  source: process.assess-case
++  target: data.permit-case
++  properties:
++    accessType: read-write
++- id: rel-decision-object
++  type: Access
++  source: process.issue-decision
++  target: object.permit-decision
++  properties:
++    accessType: write
++- id: rel-decision-letter-access
++  type: Access
++  source: process.issue-decision
++  target: representation.decision-letter
++  properties:
++    accessType: write
++- id: rel-payment-receipt
++  type: Access
++  source: process.collect-payment
++  target: object.payment-receipt
++  properties:
++    accessType: write
++- id: rel-payment-receipt-pdf
++  type: Access
++  source: process.collect-payment
++  target: representation.receipt-pdf
++  properties:
++    accessType: write
++- id: rel-submit-citizen
++  type: Access
++  source: process.submit-permit
++  target: data.citizen-profile
++  properties:
++    accessType: read
++- id: rel-incident-audit
++  type: Access
++  source: process.manage-incident
++  target: data.audit-event
++  properties:
++    accessType: read
++- id: rel-application-pdf-realizes
++  type: Realization
++  source: representation.application-pdf
++  target: object.permit-application
++- id: rel-receipt-pdf-realizes
++  type: Realization
++  source: representation.receipt-pdf
++  target: object.payment-receipt
++- id: rel-decision-letter-realizes
++  type: Realization
++  source: representation.decision-letter
++  target: object.permit-decision
++- id: rel-service-submit
++  type: Association
++  source: service.digital-permit
++  target: process.submit-permit
++- id: rel-service-decision
++  type: Association
++  source: service.digital-permit
++  target: process.issue-decision
++- id: rel-portal-service
++  type: Realization
++  source: app.citizen-portal
++  target: service.digital-permit
++- id: rel-case-service
++  type: Realization
++  source: app.case-management
++  target: service.digital-permit
++- id: rel-permit-api-business-service
++  type: Realization
++  source: service.permit-api
++  target: service.digital-permit
++- id: rel-gateway-api
++  type: Realization
++  source: app.api-gateway
++  target: service.permit-api
++- id: rel-identity-service
++  type: Realization
++  source: app.identity-access
++  target: service.identity
++- id: rel-portal-submit
++  type: Serving
++  source: app.citizen-portal
++  target: process.submit-permit
++- id: rel-identity-submit
++  type: Serving
++  source: service.identity
++  target: process.submit-permit
++- id: rel-case-assess
++  type: Serving
++  source: app.case-management
++  target: process.assess-case
++- id: rel-payment-process
++  type: Serving
++  source: app.payment
++  target: process.collect-payment
++- id: rel-case-decision
++  type: Serving
++  source: app.case-management
++  target: process.issue-decision
++- id: rel-notify-decision
++  type: Serving
++  source: app.notification
++  target: process.issue-decision
++- id: rel-itsm-incident
++  type: Serving
++  source: app.itsm
++  target: process.manage-incident
++- id: rel-observe-incident
++  type: Serving
++  source: app.observability
++  target: process.manage-incident
++- id: rel-itsm-change
++  type: Serving
++  source: app.itsm
++  target: process.manage-change
++- id: rel-gateway-portal
++  type: Serving
++  source: app.api-gateway
++  target: app.citizen-portal
++- id: rel-doc-case
++  type: Serving
++  source: app.document-management
++  target: app.case-management
++- id: rel-notify-case
++  type: Serving
++  source: app.notification
++  target: app.case-management
++- id: rel-payment-case
++  type: Serving
++  source: app.payment
++  target: app.case-management
++- id: rel-portal-gateway-flow
++  type: Flow
++  source: app.citizen-portal
++  target: app.api-gateway
++- id: rel-gateway-case-flow
++  type: Flow
++  source: app.api-gateway
++  target: app.case-management
++- id: rel-case-doc-flow
++  type: Flow
++  source: app.case-management
++  target: app.document-management
++- id: rel-case-payment-flow
++  type: Flow
++  source: app.case-management
++  target: app.payment
++- id: rel-case-notify-flow
++  type: Flow
++  source: app.case-management
++  target: app.notification
++- id: rel-portal-identity-flow
++  type: Flow
++  source: app.citizen-portal
++  target: app.identity-access
++- id: rel-container-portal
++  type: Serving
++  source: tech.container-platform
++  target: app.citizen-portal
++- id: rel-container-case
++  type: Serving
++  source: tech.container-platform
++  target: app.case-management
++- id: rel-container-gateway
++  type: Serving
++  source: tech.container-platform
++  target: app.api-gateway
++- id: rel-database-case
++  type: Serving
++  source: tech.database-service
++  target: app.case-management
++- id: rel-messaging-notify
++  type: Serving
++  source: tech.messaging-service
++  target: app.notification
++- id: rel-monitor-observe
++  type: Serving
++  source: tech.monitoring-service
++  target: app.observability
++- id: rel-openshift-runtime
++  type: Assignment
++  source: tech.openshift
++  target: tech.container-platform
++- id: rel-postgresql-database
++  type: Assignment
++  source: tech.postgresql
++  target: tech.database-service
++- id: rel-openshift-kafka
++  type: Composition
++  source: tech.openshift
++  target: tech.kafka
++- id: rel-kafka-messaging
++  type: Association
++  source: tech.kafka
++  target: tech.messaging-service
++- id: rel-residents-digital
++  type: Influence
++  source: stakeholder.residents
++  target: driver.digital-first
++  properties:
++    strength: +
++- id: rel-leadership-compliance
++  type: Influence
++  source: stakeholder.service-department
++  target: driver.compliance
++  properties:
++    strength: +
++- id: rel-digital-completion
++  type: Influence
++  source: driver.digital-first
++  target: goal.digital-completion
++  properties:
++    strength: ++
++- id: rel-digital-speed
++  type: Influence
++  source: driver.digital-first
++  target: goal.fast-decision
++  properties:
++    strength: +
++- id: rel-compliance-audit
++  type: Influence
++  source: driver.compliance
++  target: requirement.auditability
++  properties:
++    strength: ++
++- id: rel-completion-availability
++  type: Influence
++  source: goal.digital-completion
++  target: requirement.availability
++  properties:
++    strength: +
++- id: rel-risk-audit
++  type: Influence
++  source: assessment.legacy-risk
++  target: requirement.auditability
++  properties:
++    strength: +++
++- id: rel-audit-events
++  type: Association
++  source: requirement.auditability
++  target: data.audit-event
++- id: rel-residency-citizen
++  type: Association
++  source: constraint.data-residency
++  target: data.citizen-profile
++- id: rel-availability-runtime
++  type: Association
++  source: requirement.availability
++  target: tech.container-platform
++- id: rel-work-audit
++  type: Realization
++  source: work.permit-modernization
++  target: requirement.auditability
++- id: rel-work-platform
++  type: Realization
++  source: work.permit-modernization
++  target: deliverable.target-platform
++- id: rel-work-operating-model
++  type: Realization
++  source: work.permit-modernization
++  target: deliverable.operating-model
++- id: rel-platform-plateau
++  type: Association
++  source: deliverable.target-platform
++  target: plateau.digital-permit-live
++- id: rel-gap-work
++  type: Association
++  source: gap.manual-channels
++  target: work.permit-modernization
++- id: rel-work-change
++  type: Association
++  source: work.permit-modernization
++  target: process.manage-change
++- id: rel-caseworker-review-appeal
++  type: Assignment
++  source: role.case-worker
++  target: process.review-appeal

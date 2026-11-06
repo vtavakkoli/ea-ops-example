@@ -1,0 +1,35 @@
+- id: tech.openshift
+  type: Node
+  name: Container Platform Cluster
+  description: Highly available container execution environment for digital service workloads.
+  properties: {owner: Platform Engineering, lifecycle: strategic}
+- id: tech.postgresql
+  type: Node
+  name: Managed PostgreSQL Cluster
+  description: Highly available relational data platform for transactional service workloads.
+  properties: {owner: Database Platform, lifecycle: strategic}
+- id: tech.kafka
+  type: SystemSoftware
+  name: Event Streaming Runtime
+  description: Event streaming software used for asynchronous service integration and notifications.
+  properties: {owner: Integration Platform, lifecycle: strategic}
+- id: tech.container-platform
+  type: TechnologyService
+  name: Managed Container Runtime
+  description: Managed runtime, scaling and workload-isolation service for digital applications.
+  properties: {owner: Platform Engineering, lifecycle: strategic}
+- id: tech.database-service
+  type: TechnologyService
+  name: Managed Database Service
+  description: Resilient relational persistence service with backup and recovery controls.
+  properties: {owner: Database Platform, lifecycle: strategic}
+- id: tech.messaging-service
+  type: TechnologyService
+  name: Event Messaging Service
+  description: Reliable asynchronous messaging capability for decoupled application integration.
+  properties: {owner: Integration Platform, lifecycle: strategic}
+- id: tech.monitoring-service
+  type: TechnologyService
+  name: Monitoring & Telemetry Service
+  description: Collection and retention service for metrics, logs, traces and operational events.
+  properties: {owner: Platform Engineering, lifecycle: strategic}

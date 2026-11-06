@@ -1,0 +1,1524 @@
+{
+  "baseline-to-transition": {
+    "gap": {
+      "objects": {
+        "added": [
+          "tech.target-runtime"
+        ],
+        "removed": [],
+        "modified": [
+          "process.assess-case"
+        ]
+      },
+      "relationships": {
+        "added": [
+          "rel-target-platform"
+        ],
+        "removed": [],
+        "modified": []
+      },
+      "views": {
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "rulesChanged": false,
+      "configChanged": false,
+      "metamodelChanged": false
+    },
+    "review": {
+      "delta": {
+        "objects": {
+          "added": [
+            "tech.target-runtime"
+          ],
+          "removed": [],
+          "modified": [
+            "process.assess-case"
+          ]
+        },
+        "relationships": {
+          "added": [
+            "rel-target-platform"
+          ],
+          "removed": [],
+          "modified": []
+        },
+        "views": {
+          "added": [],
+          "removed": [],
+          "modified": []
+        },
+        "rulesChanged": false,
+        "configChanged": false,
+        "metamodelChanged": false
+      },
+      "metadataOnly": [
+        "process.assess-case"
+      ],
+      "dependencySeeds": [
+        "tech.container-platform",
+        "tech.target-runtime"
+      ],
+      "impacted": [
+        "app.api-gateway",
+        "app.case-management",
+        "app.citizen-portal",
+        "app.document-management",
+        "app.identity-access",
+        "app.notification",
+        "app.payment",
+        "data.permit-case",
+        "event.application-registered",
+        "event.assessment-completed",
+        "event.decision-delivered",
+        "event.payment-confirmed",
+        "event.payment-window-opened",
+        "object.payment-receipt",
+        "object.permit-application",
+        "object.permit-decision",
+        "process.assess-case",
+        "process.collect-payment",
+        "process.issue-decision",
+        "process.submit-permit",
+        "representation.application-pdf",
+        "representation.decision-letter",
+        "representation.receipt-pdf",
+        "service.digital-permit",
+        "service.identity",
+        "service.permit-api",
+        "tech.container-platform",
+        "tech.target-runtime"
+      ],
+      "before": {
+        "changed": [
+          "tech.container-platform",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "after": {
+        "changed": [
+          "tech.container-platform",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Node": 1,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "policyReviewRequired": false,
+      "scope": "structural review candidates; not observed business consequences"
+    }
+  },
+  "transition-to-target": {
+    "gap": {
+      "objects": {
+        "added": [],
+        "removed": [],
+        "modified": [
+          "gap.manual-channels",
+          "tech.openshift",
+          "tech.target-runtime"
+        ]
+      },
+      "relationships": {
+        "added": [],
+        "removed": [
+          "rel-openshift-runtime"
+        ],
+        "modified": []
+      },
+      "views": {
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "rulesChanged": false,
+      "configChanged": false,
+      "metamodelChanged": false
+    },
+    "review": {
+      "delta": {
+        "objects": {
+          "added": [],
+          "removed": [],
+          "modified": [
+            "gap.manual-channels",
+            "tech.openshift",
+            "tech.target-runtime"
+          ]
+        },
+        "relationships": {
+          "added": [],
+          "removed": [
+            "rel-openshift-runtime"
+          ],
+          "modified": []
+        },
+        "views": {
+          "added": [],
+          "removed": [],
+          "modified": []
+        },
+        "rulesChanged": false,
+        "configChanged": false,
+        "metamodelChanged": false
+      },
+      "metadataOnly": [],
+      "dependencySeeds": [
+        "gap.manual-channels",
+        "tech.container-platform",
+        "tech.openshift",
+        "tech.target-runtime"
+      ],
+      "impacted": [
+        "app.api-gateway",
+        "app.case-management",
+        "app.citizen-portal",
+        "app.document-management",
+        "app.identity-access",
+        "app.notification",
+        "app.payment",
+        "data.permit-case",
+        "event.application-registered",
+        "event.assessment-completed",
+        "event.decision-delivered",
+        "event.payment-confirmed",
+        "event.payment-window-opened",
+        "gap.manual-channels",
+        "object.payment-receipt",
+        "object.permit-application",
+        "object.permit-decision",
+        "process.assess-case",
+        "process.collect-payment",
+        "process.issue-decision",
+        "process.submit-permit",
+        "representation.application-pdf",
+        "representation.decision-letter",
+        "representation.receipt-pdf",
+        "service.digital-permit",
+        "service.identity",
+        "service.permit-api",
+        "tech.container-platform",
+        "tech.openshift",
+        "tech.target-runtime"
+      ],
+      "before": {
+        "changed": [
+          "gap.manual-channels",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "gap.manual-channels",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Gap": 1,
+          "Node": 2,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "gap.manual-channels": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.openshift": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "after": {
+        "changed": [
+          "gap.manual-channels",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "gap.manual-channels",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Gap": 1,
+          "Node": 2,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "gap.manual-channels": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.openshift": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "policyReviewRequired": false,
+      "scope": "structural review candidates; not observed business consequences"
+    }
+  },
+  "baseline-to-target": {
+    "gap": {
+      "objects": {
+        "added": [
+          "tech.target-runtime"
+        ],
+        "removed": [],
+        "modified": [
+          "gap.manual-channels",
+          "process.assess-case",
+          "tech.openshift"
+        ]
+      },
+      "relationships": {
+        "added": [
+          "rel-target-platform"
+        ],
+        "removed": [
+          "rel-openshift-runtime"
+        ],
+        "modified": []
+      },
+      "views": {
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "rulesChanged": false,
+      "configChanged": false,
+      "metamodelChanged": false
+    },
+    "review": {
+      "delta": {
+        "objects": {
+          "added": [
+            "tech.target-runtime"
+          ],
+          "removed": [],
+          "modified": [
+            "gap.manual-channels",
+            "process.assess-case",
+            "tech.openshift"
+          ]
+        },
+        "relationships": {
+          "added": [
+            "rel-target-platform"
+          ],
+          "removed": [
+            "rel-openshift-runtime"
+          ],
+          "modified": []
+        },
+        "views": {
+          "added": [],
+          "removed": [],
+          "modified": []
+        },
+        "rulesChanged": false,
+        "configChanged": false,
+        "metamodelChanged": false
+      },
+      "metadataOnly": [
+        "process.assess-case"
+      ],
+      "dependencySeeds": [
+        "gap.manual-channels",
+        "tech.container-platform",
+        "tech.openshift",
+        "tech.target-runtime"
+      ],
+      "impacted": [
+        "app.api-gateway",
+        "app.case-management",
+        "app.citizen-portal",
+        "app.document-management",
+        "app.identity-access",
+        "app.notification",
+        "app.payment",
+        "data.permit-case",
+        "event.application-registered",
+        "event.assessment-completed",
+        "event.decision-delivered",
+        "event.payment-confirmed",
+        "event.payment-window-opened",
+        "gap.manual-channels",
+        "object.payment-receipt",
+        "object.permit-application",
+        "object.permit-decision",
+        "process.assess-case",
+        "process.collect-payment",
+        "process.issue-decision",
+        "process.submit-permit",
+        "representation.application-pdf",
+        "representation.decision-letter",
+        "representation.receipt-pdf",
+        "service.digital-permit",
+        "service.identity",
+        "service.permit-api",
+        "tech.container-platform",
+        "tech.openshift",
+        "tech.target-runtime"
+      ],
+      "before": {
+        "changed": [
+          "gap.manual-channels",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "gap.manual-channels",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Gap": 1,
+          "Node": 1,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "gap.manual-channels": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.openshift": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "after": {
+        "changed": [
+          "gap.manual-channels",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "impacted": [
+          "app.api-gateway",
+          "app.case-management",
+          "app.citizen-portal",
+          "app.document-management",
+          "app.identity-access",
+          "app.notification",
+          "app.payment",
+          "data.permit-case",
+          "event.application-registered",
+          "event.assessment-completed",
+          "event.decision-delivered",
+          "event.payment-confirmed",
+          "event.payment-window-opened",
+          "gap.manual-channels",
+          "object.payment-receipt",
+          "object.permit-application",
+          "object.permit-decision",
+          "process.assess-case",
+          "process.collect-payment",
+          "process.issue-decision",
+          "process.submit-permit",
+          "representation.application-pdf",
+          "representation.decision-letter",
+          "representation.receipt-pdf",
+          "service.digital-permit",
+          "service.identity",
+          "service.permit-api",
+          "tech.container-platform",
+          "tech.openshift",
+          "tech.target-runtime"
+        ],
+        "byType": {
+          "ApplicationComponent": 7,
+          "ApplicationService": 2,
+          "BusinessEvent": 5,
+          "BusinessObject": 3,
+          "BusinessProcess": 4,
+          "BusinessService": 1,
+          "DataObject": 1,
+          "Gap": 1,
+          "Node": 2,
+          "Representation": 3,
+          "TechnologyService": 1
+        },
+        "profile": "dependency",
+        "direction": "both",
+        "maxDepth": null,
+        "relationshipTypes": null,
+        "reasons": {
+          "app.api-gateway": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-gateway"
+          },
+          "app.case-management": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-case"
+          },
+          "app.citizen-portal": {
+            "depth": 1,
+            "via": "tech.container-platform",
+            "relationship": "rel-container-portal"
+          },
+          "app.document-management": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-doc-flow"
+          },
+          "app.identity-access": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-identity-flow"
+          },
+          "app.notification": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-notify-flow"
+          },
+          "app.payment": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-payment-flow"
+          },
+          "data.permit-case": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-case-data"
+          },
+          "event.application-registered": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-registers"
+          },
+          "event.assessment-completed": {
+            "depth": 3,
+            "via": "process.assess-case",
+            "relationship": "rel-assess-completes"
+          },
+          "event.decision-delivered": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-delivered"
+          },
+          "event.payment-confirmed": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-confirms"
+          },
+          "event.payment-window-opened": {
+            "depth": 4,
+            "via": "event.assessment-completed",
+            "relationship": "rel-assessment-opens-window"
+          },
+          "gap.manual-channels": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "object.payment-receipt": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt"
+          },
+          "object.permit-application": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application"
+          },
+          "object.permit-decision": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-object"
+          },
+          "process.assess-case": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-assess"
+          },
+          "process.collect-payment": {
+            "depth": 3,
+            "via": "app.payment",
+            "relationship": "rel-payment-process"
+          },
+          "process.issue-decision": {
+            "depth": 2,
+            "via": "app.case-management",
+            "relationship": "rel-case-decision"
+          },
+          "process.submit-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-submit"
+          },
+          "representation.application-pdf": {
+            "depth": 3,
+            "via": "process.submit-permit",
+            "relationship": "rel-submit-application-pdf"
+          },
+          "representation.decision-letter": {
+            "depth": 3,
+            "via": "process.issue-decision",
+            "relationship": "rel-decision-letter-access"
+          },
+          "representation.receipt-pdf": {
+            "depth": 4,
+            "via": "process.collect-payment",
+            "relationship": "rel-payment-receipt-pdf"
+          },
+          "service.digital-permit": {
+            "depth": 2,
+            "via": "app.citizen-portal",
+            "relationship": "rel-portal-service"
+          },
+          "service.identity": {
+            "depth": 3,
+            "via": "app.identity-access",
+            "relationship": "rel-identity-service"
+          },
+          "service.permit-api": {
+            "depth": 2,
+            "via": "app.api-gateway",
+            "relationship": "rel-gateway-api"
+          },
+          "tech.container-platform": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.openshift": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          },
+          "tech.target-runtime": {
+            "depth": 0,
+            "via": null,
+            "relationship": null
+          }
+        }
+      },
+      "policyReviewRequired": false,
+      "scope": "structural review candidates; not observed business consequences"
+    }
+  }
+}

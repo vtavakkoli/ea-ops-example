@@ -23,3 +23,13 @@ python research/run_scenarios.py \
 ```
 
 The canonical CI execution is `.github/workflows/scenario-evaluation.yml`.
+
+## Revision: typed review scope and architecture states
+
+`run_scenarios.py` retains the ten original patches and adds typed, two-hop and change-aware before/after scopes, checked with an independent fixed-point oracle over raw YAML. Seeds and dangling/deleted IDs remain visible. Smaller sets do not establish business-impact accuracy.
+
+`python research/run_roadmap.py --output results/roadmap` materializes baseline, transition and target repositories with Plateau/Gap concepts and a replacement platform. It validates all three and asserts concrete inventory additions/removals. Use a new output directory to preserve earlier evidence. `eaops diff` reports the inventory gap, and `eaops impact TARGET --baseline BASELINE` reports structural review candidates. The demonstration is fictional and has no stakeholder acceptance results.
+
+Preserved outputs are under `research/revision/`. The workflow pins the compatible EA-Ops revision; update that pin deliberately when adopting subsequent changes.
+
+The associated preprint DOI is [10.48550/arXiv.2609.30593](https://doi.org/10.48550/arXiv.2609.30593). Evaluation by the City of Vienna (Wien Digital, MA 01) is planned future work; the current evidence remains the fictional Metroville case and implementation checks.
