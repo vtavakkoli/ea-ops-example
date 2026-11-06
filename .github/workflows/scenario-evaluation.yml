@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vtavakkoli/ea-ops
-          ref: 43a62bc77c29fdd1c7c81470863016e1d7c187b7 # Compatible IEEE revision candidate
+          ref: f6a598b48a06b47940438540e83a4ebe6a622546 # Compatible IEEE revision candidate
           path: _eaops
 
       - uses: actions/setup-python@v5

@@ -31,3 +31,5 @@ The canonical CI execution is `.github/workflows/scenario-evaluation.yml`.
 `python research/run_roadmap.py --output results/roadmap` materializes baseline, transition and target repositories with Plateau/Gap concepts and a replacement platform. It validates all three and asserts concrete inventory additions/removals. Use a new output directory to preserve earlier evidence. `eaops diff` reports the inventory gap, and `eaops impact TARGET --baseline BASELINE` reports structural review candidates. The demonstration is fictional and has no stakeholder acceptance results.
 
 Preserved outputs are under `research/revision/`. The workflow pins the compatible EA-Ops revision; update that pin deliberately when adopting subsequent changes.
+
+The associated preprint DOI is [10.48550/arXiv.2609.30593](https://doi.org/10.48550/arXiv.2609.30593). Evaluation by the City of Vienna (Wien Digital, MA 01) is planned future work; the current evidence remains the fictional Metroville case and implementation checks.

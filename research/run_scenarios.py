@@ -124,7 +124,10 @@ def independent_dependency(root: Path, seeds: set[str], max_depth: int | None = 
             if kind in ("Composition", "Aggregation") and t in previous:
                 found.add(s)
             if kind == "Access":
-                access = (rel.get("properties") or {}).get("accessType", "access")
+                properties = rel.get("properties") or {}
+                access = str(properties.get("accessType") or properties.get("access") or "access").lower()
+                if access in ("readwrite", "read/write"):
+                    access = "read-write"
                 if access in ("read", "read-write", "access") and t in previous:
                     found.add(s)
                 if access in ("write", "read-write", "access") and s in previous:
