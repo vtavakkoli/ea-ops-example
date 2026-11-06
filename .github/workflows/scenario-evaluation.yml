@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vtavakkoli/ea-ops
+          ref: 43a62bc77c29fdd1c7c81470863016e1d7c187b7 # Compatible IEEE revision candidate
           path: _eaops
 
       - uses: actions/setup-python@v5
@@ -48,7 +49,11 @@ jobs:
         run: |
           python research/run_scenarios.py             --base .             --scenarios research/scenarios             --output results/metroville-scenarios.csv             --patch-dir results/patches
 
+      - name: Demonstrate architecture-state inventory gaps
+        run: python research/run_roadmap.py --output results/roadmap
+
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: metroville-research-scenarios
           path: results/

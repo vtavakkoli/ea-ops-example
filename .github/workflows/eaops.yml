@@ -25,12 +25,12 @@ jobs:
           fetch-depth: 0
 
       - name: EA-Ops architecture gate
-        uses: vtavakkoli/ea-ops@1f36a6b7282b2a7540e1d536cd6d8fadccfe832b # Packaging fix: no duplicate eaops/data files
+        uses: vtavakkoli/ea-ops@43a62bc77c29fdd1c7c81470863016e1d7c187b7 # IEEE revision candidate: indexed report and typed impact
         with:
           root: .
 
       - name: Install EA-Ops CLI for reports
-        run: python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@1f36a6b7282b2a7540e1d536cd6d8fadccfe832b"
+        run: python -m pip install "git+https://github.com/vtavakkoli/ea-ops.git@43a62bc77c29fdd1c7c81470863016e1d7c187b7"
 
       - name: Architecture summary
         run: |

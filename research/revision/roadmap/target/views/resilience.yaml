@@ -1,0 +1,6 @@
+id: view.resilience
+name: Resilience and Governance
+root: process.manage-incident
+include:
+  depth: 3
+  types: [BusinessProcess, ApplicationComponent, TechnologyService, Requirement, Constraint, Assessment, WorkPackage]
